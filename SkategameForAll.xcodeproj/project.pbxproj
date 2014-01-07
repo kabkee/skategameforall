@@ -1,0 +1,517 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9F26F2C51877BFAA00187C06 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F26F2C41877BFAA00187C06 /* Foundation.framework */; };
+		9F26F2C71877BFAA00187C06 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F26F2C61877BFAA00187C06 /* CoreGraphics.framework */; };
+		9F26F2C91877BFAA00187C06 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F26F2C81877BFAA00187C06 /* UIKit.framework */; };
+		9F26F2CF1877BFAA00187C06 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F26F2CD1877BFAA00187C06 /* InfoPlist.strings */; };
+		9F26F2D11877BFAA00187C06 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F26F2D01877BFAA00187C06 /* main.m */; };
+		9F26F2D51877BFAA00187C06 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F26F2D41877BFAA00187C06 /* AppDelegate.m */; };
+		9F26F2D81877BFAA00187C06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F26F2D61877BFAA00187C06 /* Main.storyboard */; };
+		9F26F2DB1877BFAA00187C06 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F26F2DA1877BFAA00187C06 /* ViewController.m */; };
+		9F26F2DD1877BFAA00187C06 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F26F2DC1877BFAA00187C06 /* Images.xcassets */; };
+		9F26F2E41877BFAB00187C06 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F26F2E31877BFAB00187C06 /* XCTest.framework */; };
+		9F26F2E51877BFAB00187C06 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F26F2C41877BFAA00187C06 /* Foundation.framework */; };
+		9F26F2E61877BFAB00187C06 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F26F2C81877BFAA00187C06 /* UIKit.framework */; };
+		9F26F2EE1877BFAB00187C06 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F26F2EC1877BFAB00187C06 /* InfoPlist.strings */; };
+		9F26F2F01877BFAB00187C06 /* SkategameForAllTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F26F2EF1877BFAB00187C06 /* SkategameForAllTests.m */; };
+		9F26F2FB1878625000187C06 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F26F2FA1878625000187C06 /* SWRevealViewController.m */; };
+		9F26F55818786C1D00187C06 /* SideBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F26F55718786C1D00187C06 /* SideBarViewController.m */; };
+		9F26F562187903CE00187C06 /* block-menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F26F560187903CE00187C06 /* block-menu.png */; };
+		9F26F563187903CE00187C06 /* list-circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F26F561187903CE00187C06 /* list-circle.png */; };
+		9F26F569187913EB00187C06 /* SK8GameListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F26F568187913EB00187C06 /* SK8GameListViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9F26F2E71877BFAB00187C06 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9F26F2B91877BFAA00187C06 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9F26F2C01877BFAA00187C06;
+			remoteInfo = SkategameForAll;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9F26F2C11877BFAA00187C06 /* SkategameForAll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkategameForAll.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F26F2C41877BFAA00187C06 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		9F26F2C61877BFAA00187C06 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		9F26F2C81877BFAA00187C06 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		9F26F2CC1877BFAA00187C06 /* SkategameForAll-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SkategameForAll-Info.plist"; sourceTree = "<group>"; };
+		9F26F2CE1877BFAA00187C06 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9F26F2D01877BFAA00187C06 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9F26F2D21877BFAA00187C06 /* SkategameForAll-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SkategameForAll-Prefix.pch"; sourceTree = "<group>"; };
+		9F26F2D31877BFAA00187C06 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9F26F2D41877BFAA00187C06 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9F26F2D71877BFAA00187C06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9F26F2D91877BFAA00187C06 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		9F26F2DA1877BFAA00187C06 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9F26F2DC1877BFAA00187C06 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9F26F2E21877BFAB00187C06 /* SkategameForAllTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkategameForAllTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F26F2E31877BFAB00187C06 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		9F26F2EB1877BFAB00187C06 /* SkategameForAllTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SkategameForAllTests-Info.plist"; sourceTree = "<group>"; };
+		9F26F2ED1877BFAB00187C06 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9F26F2EF1877BFAB00187C06 /* SkategameForAllTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SkategameForAllTests.m; sourceTree = "<group>"; };
+		9F26F2F91878625000187C06 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		9F26F2FA1878625000187C06 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		9F26F55618786C1D00187C06 /* SideBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideBarViewController.h; sourceTree = "<group>"; };
+		9F26F55718786C1D00187C06 /* SideBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideBarViewController.m; sourceTree = "<group>"; };
+		9F26F560187903CE00187C06 /* block-menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "block-menu.png"; sourceTree = "<group>"; };
+		9F26F561187903CE00187C06 /* list-circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list-circle.png"; sourceTree = "<group>"; };
+		9F26F567187913EB00187C06 /* SK8GameListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SK8GameListViewController.h; sourceTree = "<group>"; };
+		9F26F568187913EB00187C06 /* SK8GameListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SK8GameListViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9F26F2BE1877BFAA00187C06 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F26F2C71877BFAA00187C06 /* CoreGraphics.framework in Frameworks */,
+				9F26F2C91877BFAA00187C06 /* UIKit.framework in Frameworks */,
+				9F26F2C51877BFAA00187C06 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F26F2DF1877BFAB00187C06 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F26F2E41877BFAB00187C06 /* XCTest.framework in Frameworks */,
+				9F26F2E61877BFAB00187C06 /* UIKit.framework in Frameworks */,
+				9F26F2E51877BFAB00187C06 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9F26F2B81877BFAA00187C06 = {
+			isa = PBXGroup;
+			children = (
+				9F26F2CA1877BFAA00187C06 /* SkategameForAll */,
+				9F26F2E91877BFAB00187C06 /* SkategameForAllTests */,
+				9F26F2C31877BFAA00187C06 /* Frameworks */,
+				9F26F2C21877BFAA00187C06 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9F26F2C21877BFAA00187C06 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9F26F2C11877BFAA00187C06 /* SkategameForAll.app */,
+				9F26F2E21877BFAB00187C06 /* SkategameForAllTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9F26F2C31877BFAA00187C06 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9F26F2C41877BFAA00187C06 /* Foundation.framework */,
+				9F26F2C61877BFAA00187C06 /* CoreGraphics.framework */,
+				9F26F2C81877BFAA00187C06 /* UIKit.framework */,
+				9F26F2E31877BFAB00187C06 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9F26F2CA1877BFAA00187C06 /* SkategameForAll */ = {
+			isa = PBXGroup;
+			children = (
+				9F26F2D31877BFAA00187C06 /* AppDelegate.h */,
+				9F26F2D41877BFAA00187C06 /* AppDelegate.m */,
+				9F26F2D61877BFAA00187C06 /* Main.storyboard */,
+				9F26F2D91877BFAA00187C06 /* ViewController.h */,
+				9F26F2DA1877BFAA00187C06 /* ViewController.m */,
+				9F26F55618786C1D00187C06 /* SideBarViewController.h */,
+				9F26F55718786C1D00187C06 /* SideBarViewController.m */,
+				9F26F567187913EB00187C06 /* SK8GameListViewController.h */,
+				9F26F568187913EB00187C06 /* SK8GameListViewController.m */,
+				9F26F2DC1877BFAA00187C06 /* Images.xcassets */,
+				9F26F2CB1877BFAA00187C06 /* Supporting Files */,
+			);
+			path = SkategameForAll;
+			sourceTree = "<group>";
+		};
+		9F26F2CB1877BFAA00187C06 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9F26F5591878724C00187C06 /* image */,
+				9F26F2FC1878625500187C06 /* Library */,
+				9F26F2CC1877BFAA00187C06 /* SkategameForAll-Info.plist */,
+				9F26F2CD1877BFAA00187C06 /* InfoPlist.strings */,
+				9F26F2D01877BFAA00187C06 /* main.m */,
+				9F26F2D21877BFAA00187C06 /* SkategameForAll-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9F26F2E91877BFAB00187C06 /* SkategameForAllTests */ = {
+			isa = PBXGroup;
+			children = (
+				9F26F2EF1877BFAB00187C06 /* SkategameForAllTests.m */,
+				9F26F2EA1877BFAB00187C06 /* Supporting Files */,
+			);
+			path = SkategameForAllTests;
+			sourceTree = "<group>";
+		};
+		9F26F2EA1877BFAB00187C06 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9F26F2EB1877BFAB00187C06 /* SkategameForAllTests-Info.plist */,
+				9F26F2EC1877BFAB00187C06 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9F26F2FC1878625500187C06 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				9F26F2F91878625000187C06 /* SWRevealViewController.h */,
+				9F26F2FA1878625000187C06 /* SWRevealViewController.m */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
+		9F26F5591878724C00187C06 /* image */ = {
+			isa = PBXGroup;
+			children = (
+				9F26F560187903CE00187C06 /* block-menu.png */,
+				9F26F561187903CE00187C06 /* list-circle.png */,
+			);
+			name = image;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9F26F2C01877BFAA00187C06 /* SkategameForAll */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9F26F2F31877BFAB00187C06 /* Build configuration list for PBXNativeTarget "SkategameForAll" */;
+			buildPhases = (
+				9F26F2BD1877BFAA00187C06 /* Sources */,
+				9F26F2BE1877BFAA00187C06 /* Frameworks */,
+				9F26F2BF1877BFAA00187C06 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SkategameForAll;
+			productName = SkategameForAll;
+			productReference = 9F26F2C11877BFAA00187C06 /* SkategameForAll.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9F26F2E11877BFAB00187C06 /* SkategameForAllTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9F26F2F61877BFAB00187C06 /* Build configuration list for PBXNativeTarget "SkategameForAllTests" */;
+			buildPhases = (
+				9F26F2DE1877BFAB00187C06 /* Sources */,
+				9F26F2DF1877BFAB00187C06 /* Frameworks */,
+				9F26F2E01877BFAB00187C06 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9F26F2E81877BFAB00187C06 /* PBXTargetDependency */,
+			);
+			name = SkategameForAllTests;
+			productName = SkategameForAllTests;
+			productReference = 9F26F2E21877BFAB00187C06 /* SkategameForAllTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9F26F2B91877BFAA00187C06 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Kabkee Moon";
+				TargetAttributes = {
+					9F26F2E11877BFAB00187C06 = {
+						TestTargetID = 9F26F2C01877BFAA00187C06;
+					};
+				};
+			};
+			buildConfigurationList = 9F26F2BC1877BFAA00187C06 /* Build configuration list for PBXProject "SkategameForAll" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9F26F2B81877BFAA00187C06;
+			productRefGroup = 9F26F2C21877BFAA00187C06 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9F26F2C01877BFAA00187C06 /* SkategameForAll */,
+				9F26F2E11877BFAB00187C06 /* SkategameForAllTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9F26F2BF1877BFAA00187C06 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F26F2DD1877BFAA00187C06 /* Images.xcassets in Resources */,
+				9F26F562187903CE00187C06 /* block-menu.png in Resources */,
+				9F26F2CF1877BFAA00187C06 /* InfoPlist.strings in Resources */,
+				9F26F563187903CE00187C06 /* list-circle.png in Resources */,
+				9F26F2D81877BFAA00187C06 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F26F2E01877BFAB00187C06 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F26F2EE1877BFAB00187C06 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9F26F2BD1877BFAA00187C06 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F26F2DB1877BFAA00187C06 /* ViewController.m in Sources */,
+				9F26F2D51877BFAA00187C06 /* AppDelegate.m in Sources */,
+				9F26F2D11877BFAA00187C06 /* main.m in Sources */,
+				9F26F55818786C1D00187C06 /* SideBarViewController.m in Sources */,
+				9F26F2FB1878625000187C06 /* SWRevealViewController.m in Sources */,
+				9F26F569187913EB00187C06 /* SK8GameListViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F26F2DE1877BFAB00187C06 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F26F2F01877BFAB00187C06 /* SkategameForAllTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9F26F2E81877BFAB00187C06 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9F26F2C01877BFAA00187C06 /* SkategameForAll */;
+			targetProxy = 9F26F2E71877BFAB00187C06 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9F26F2CD1877BFAA00187C06 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9F26F2CE1877BFAA00187C06 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		9F26F2D61877BFAA00187C06 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9F26F2D71877BFAA00187C06 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9F26F2EC1877BFAB00187C06 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9F26F2ED1877BFAB00187C06 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9F26F2F11877BFAB00187C06 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9F26F2F21877BFAB00187C06 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9F26F2F41877BFAB00187C06 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SkategameForAll/SkategameForAll-Prefix.pch";
+				INFOPLIST_FILE = "SkategameForAll/SkategameForAll-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		9F26F2F51877BFAB00187C06 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SkategameForAll/SkategameForAll-Prefix.pch";
+				INFOPLIST_FILE = "SkategameForAll/SkategameForAll-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		9F26F2F71877BFAB00187C06 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SkategameForAll.app/SkategameForAll";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SkategameForAll/SkategameForAll-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SkategameForAllTests/SkategameForAllTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		9F26F2F81877BFAB00187C06 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SkategameForAll.app/SkategameForAll";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SkategameForAll/SkategameForAll-Prefix.pch";
+				INFOPLIST_FILE = "SkategameForAllTests/SkategameForAllTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9F26F2BC1877BFAA00187C06 /* Build configuration list for PBXProject "SkategameForAll" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F26F2F11877BFAB00187C06 /* Debug */,
+				9F26F2F21877BFAB00187C06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9F26F2F31877BFAB00187C06 /* Build configuration list for PBXNativeTarget "SkategameForAll" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F26F2F41877BFAB00187C06 /* Debug */,
+				9F26F2F51877BFAB00187C06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		9F26F2F61877BFAB00187C06 /* Build configuration list for PBXNativeTarget "SkategameForAllTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F26F2F71877BFAB00187C06 /* Debug */,
+				9F26F2F81877BFAB00187C06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9F26F2B91877BFAA00187C06 /* Project object */;
+}

@@ -20,12 +20,12 @@
 		9F26F2E51877BFAB00187C06 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F26F2C41877BFAA00187C06 /* Foundation.framework */; };
 		9F26F2E61877BFAB00187C06 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F26F2C81877BFAA00187C06 /* UIKit.framework */; };
 		9F26F2EE1877BFAB00187C06 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9F26F2EC1877BFAB00187C06 /* InfoPlist.strings */; };
-		9F26F2F01877BFAB00187C06 /* SkategameForAllTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F26F2EF1877BFAB00187C06 /* SkategameForAllTests.m */; };
 		9F26F2FB1878625000187C06 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F26F2FA1878625000187C06 /* SWRevealViewController.m */; };
 		9F26F55818786C1D00187C06 /* SideBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F26F55718786C1D00187C06 /* SideBarViewController.m */; };
 		9F26F562187903CE00187C06 /* block-menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F26F560187903CE00187C06 /* block-menu.png */; };
 		9F26F563187903CE00187C06 /* list-circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F26F561187903CE00187C06 /* list-circle.png */; };
 		9F26F569187913EB00187C06 /* SK8GameListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F26F568187913EB00187C06 /* SK8GameListViewController.m */; };
+		9FDD40911884418F005084B6 /* SkategameForAllTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FDD40901884418F005084B6 /* SkategameForAllTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,7 +57,6 @@
 		9F26F2E31877BFAB00187C06 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		9F26F2EB1877BFAB00187C06 /* SkategameForAllTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SkategameForAllTests-Info.plist"; sourceTree = "<group>"; };
 		9F26F2ED1877BFAB00187C06 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		9F26F2EF1877BFAB00187C06 /* SkategameForAllTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SkategameForAllTests.m; sourceTree = "<group>"; };
 		9F26F2F91878625000187C06 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		9F26F2FA1878625000187C06 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		9F26F55618786C1D00187C06 /* SideBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideBarViewController.h; sourceTree = "<group>"; };
@@ -66,6 +65,7 @@
 		9F26F561187903CE00187C06 /* list-circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list-circle.png"; sourceTree = "<group>"; };
 		9F26F567187913EB00187C06 /* SK8GameListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SK8GameListViewController.h; sourceTree = "<group>"; };
 		9F26F568187913EB00187C06 /* SK8GameListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SK8GameListViewController.m; sourceTree = "<group>"; };
+		9FDD40901884418F005084B6 /* SkategameForAllTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkategameForAllTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +156,7 @@
 		9F26F2E91877BFAB00187C06 /* SkategameForAllTests */ = {
 			isa = PBXGroup;
 			children = (
-				9F26F2EF1877BFAB00187C06 /* SkategameForAllTests.m */,
+				9FDD40901884418F005084B6 /* SkategameForAllTests.m */,
 				9F26F2EA1877BFAB00187C06 /* Supporting Files */,
 			);
 			path = SkategameForAllTests;
@@ -301,7 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F26F2F01877BFAB00187C06 /* SkategameForAllTests.m in Sources */,
+				9FDD40911884418F005084B6 /* SkategameForAllTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,6 +502,7 @@
 				9F26F2F51877BFAB00187C06 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9F26F2F61877BFAB00187C06 /* Build configuration list for PBXNativeTarget "SkategameForAllTests" */ = {
 			isa = XCConfigurationList;
@@ -510,6 +511,7 @@
 				9F26F2F81877BFAB00187C06 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

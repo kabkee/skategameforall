@@ -67,10 +67,10 @@
     //    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     NSLog(@"Json : %@", self.jsonString);
     
-    NSData *jsonData = [self.jsonString dataUsingEncoding:NSUTF8StringEncoding];
-    NSError * error;
+//    NSData *jsonData = [self.jsonString dataUsingEncoding:NSUTF8StringEncoding];
+//    NSError * error;
     
-    NSArray * parsedData = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
+//    NSArray * parsedData = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
     
     //    XCTAssert([parsedData[0][0] isEqualToString: @"playing"], @"not equal");
     

@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SK8GameListViewController : UIViewController
+@interface SK8GameListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (strong, nonatomic) IBOutlet UIButton *BtnStarred;
+@property (strong, nonatomic) IBOutlet UIButton *BtnGames;
+@property (strong, nonatomic) IBOutlet UIButton *BtnSearch;
+@property (strong, nonatomic) IBOutlet UITableView *TableViewGamelist;
+
+
 
 @end

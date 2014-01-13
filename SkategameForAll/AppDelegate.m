@@ -9,10 +9,35 @@
 #import "AppDelegate.h"
 
 @implementation AppDelegate
+@synthesize tempGameList;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    if(!tempGameList){
+        NSError * error;
+        NSDictionary *jsonInfo = @{@"room1":
+                                       @{@"name": @"Kabkee's room1",
+                                         @"status": @"playing",
+                                         @"createDate": @"2014-01-13"},
+                                   @"room2":
+                                       @{@"name": @"Kabkee's room2",
+                                         @"status": @"poused",
+                                         @"createDate": @"2014-01-23"}};
+        
+        
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonInfo options:NSJSONWritingPrettyPrinted error: &error];
+        
+        if (error) {
+            NSLog(@"Error : @%@", [error description]);
+        }else{
+            NSError * error;
+            self.tempGameList = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error: &error];
+        }
+        
+    }
+    
     return YES;
 }
 							

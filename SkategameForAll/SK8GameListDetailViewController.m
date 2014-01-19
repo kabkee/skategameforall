@@ -73,7 +73,16 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [self.sectionTitleArray objectAtIndex:section];
+    NSString *sectionTitle = [self.sectionTitleArray objectAtIndex:section];
+    
+    if (section == 1) {
+        sectionTitle = [NSString stringWithFormat:@"%@ (%d)",[self.sectionTitleArray objectAtIndex:section], [[self.roomDetails objectForKey:@"players"] count]];
+    }
+    if (section == 2) {
+        sectionTitle = [NSString stringWithFormat:@"%@ (%d)",[self.sectionTitleArray objectAtIndex:section], [[self.roomDetails objectForKey:@"watchers"] count]];
+    }
+   
+    return sectionTitle;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -94,6 +103,7 @@
     }
     
     if (indexPath.section == 1) {
+        // specify playerCells
         static NSString *cellIdentifier = @"playerCell";
         SK8GameListDetailPlayerCell *playerCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (playerCell ==nil) {
@@ -112,7 +122,18 @@
         }
         return playerCell;
     }
-    
+    if (indexPath.section ==2) {
+        // specify watcherCells
+        static NSString *cellIdentifier = @"watcherCell";
+        SK8GameListDetailCell *watcherCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if(watcherCell == nil){
+            watcherCell = [[SK8GameListDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: cellIdentifier];
+        }
+        NSArray * watchers = [self.roomDetails valueForKey:@"watchers"];
+        watcherCell.lableWatcher.text = watchers[[indexPath row]];
+        return watcherCell;
+
+    }
     SK8GameListDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(cell == nil){
         cell = [[SK8GameListDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: cellIdentifier];

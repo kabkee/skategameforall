@@ -246,9 +246,9 @@
 				9FDA32E6188B7B7A009AE0AF /* SK8GameListDetailStatusCell.h */,
 				9FDA32E7188B7B7A009AE0AF /* SK8GameListDetailStatusCell.m */,
 				9FDA32F1188B9D66009AE0AF /* SK8GameListDetailStatusCell.xib */,
-				9FDA32EF188B9D48009AE0AF /* SK8GameListDetailPlayerCell.xib */,
 				9FDA32E9188B7BA7009AE0AF /* SK8GameListDetailPlayerCell.h */,
 				9FDA32EA188B7BA7009AE0AF /* SK8GameListDetailPlayerCell.m */,
+				9FDA32EF188B9D48009AE0AF /* SK8GameListDetailPlayerCell.xib */,
 			);
 			name = customCells;
 			sourceTree = "<group>";

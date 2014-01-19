@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SK8GameListDetailCell : UITableViewCell
+@property (strong, nonatomic) IBOutlet UILabel *lableWatcher;
 
 @end

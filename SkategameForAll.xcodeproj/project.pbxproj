@@ -31,6 +31,10 @@
 		9FDA32E3188A8229009AE0AF /* ended.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FDA32E0188A8229009AE0AF /* ended.png */; };
 		9FDA32E4188A8229009AE0AF /* paused.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FDA32E1188A8229009AE0AF /* paused.png */; };
 		9FDA32E5188A8229009AE0AF /* playing.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FDA32E2188A8229009AE0AF /* playing.png */; };
+		9FDA32E8188B7B7A009AE0AF /* SK8GameListDetailStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FDA32E7188B7B7A009AE0AF /* SK8GameListDetailStatusCell.m */; };
+		9FDA32EB188B7BA7009AE0AF /* SK8GameListDetailPlayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FDA32EA188B7BA7009AE0AF /* SK8GameListDetailPlayerCell.m */; };
+		9FDA32F0188B9D48009AE0AF /* SK8GameListDetailPlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FDA32EF188B9D48009AE0AF /* SK8GameListDetailPlayerCell.xib */; };
+		9FDA32F2188B9D66009AE0AF /* SK8GameListDetailStatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FDA32F1188B9D66009AE0AF /* SK8GameListDetailStatusCell.xib */; };
 		9FDD40911884418F005084B6 /* SkategameForAllTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FDD40901884418F005084B6 /* SkategameForAllTests.m */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +84,12 @@
 		9FDA32E0188A8229009AE0AF /* ended.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ended.png; sourceTree = "<group>"; };
 		9FDA32E1188A8229009AE0AF /* paused.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = paused.png; sourceTree = "<group>"; };
 		9FDA32E2188A8229009AE0AF /* playing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playing.png; sourceTree = "<group>"; };
+		9FDA32E6188B7B7A009AE0AF /* SK8GameListDetailStatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SK8GameListDetailStatusCell.h; sourceTree = "<group>"; };
+		9FDA32E7188B7B7A009AE0AF /* SK8GameListDetailStatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SK8GameListDetailStatusCell.m; sourceTree = "<group>"; };
+		9FDA32E9188B7BA7009AE0AF /* SK8GameListDetailPlayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SK8GameListDetailPlayerCell.h; sourceTree = "<group>"; };
+		9FDA32EA188B7BA7009AE0AF /* SK8GameListDetailPlayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SK8GameListDetailPlayerCell.m; sourceTree = "<group>"; };
+		9FDA32EF188B9D48009AE0AF /* SK8GameListDetailPlayerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SK8GameListDetailPlayerCell.xib; sourceTree = "<group>"; };
+		9FDA32F1188B9D66009AE0AF /* SK8GameListDetailStatusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SK8GameListDetailStatusCell.xib; sourceTree = "<group>"; };
 		9FDD40901884418F005084B6 /* SkategameForAllTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkategameForAllTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -214,6 +224,7 @@
 				9FDA32DC188A8070009AE0AF /* SK8GameListDetailCell.m */,
 				9FDA32D8188A7FF0009AE0AF /* SK8GameListDetailViewController.h */,
 				9FDA32D9188A7FF0009AE0AF /* SK8GameListDetailViewController.m */,
+				9FDA32EE188B9C44009AE0AF /* customCells */,
 			);
 			name = SK8GameListDetail;
 			sourceTree = "<group>";
@@ -227,6 +238,19 @@
 				9F26F568187913EB00187C06 /* SK8GameListViewController.m */,
 			);
 			name = SK8GameList;
+			sourceTree = "<group>";
+		};
+		9FDA32EE188B9C44009AE0AF /* customCells */ = {
+			isa = PBXGroup;
+			children = (
+				9FDA32E6188B7B7A009AE0AF /* SK8GameListDetailStatusCell.h */,
+				9FDA32E7188B7B7A009AE0AF /* SK8GameListDetailStatusCell.m */,
+				9FDA32F1188B9D66009AE0AF /* SK8GameListDetailStatusCell.xib */,
+				9FDA32EF188B9D48009AE0AF /* SK8GameListDetailPlayerCell.xib */,
+				9FDA32E9188B7BA7009AE0AF /* SK8GameListDetailPlayerCell.h */,
+				9FDA32EA188B7BA7009AE0AF /* SK8GameListDetailPlayerCell.m */,
+			);
+			name = customCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,7 +331,9 @@
 			files = (
 				9F26F2DD1877BFAA00187C06 /* Images.xcassets in Resources */,
 				9F26F562187903CE00187C06 /* block-menu.png in Resources */,
+				9FDA32F0188B9D48009AE0AF /* SK8GameListDetailPlayerCell.xib in Resources */,
 				9FDA32E5188A8229009AE0AF /* playing.png in Resources */,
+				9FDA32F2188B9D66009AE0AF /* SK8GameListDetailStatusCell.xib in Resources */,
 				9FDA32E3188A8229009AE0AF /* ended.png in Resources */,
 				9F26F2CF1877BFAA00187C06 /* InfoPlist.strings in Resources */,
 				9F26F563187903CE00187C06 /* list-circle.png in Resources */,
@@ -332,9 +358,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F26F2DB1877BFAA00187C06 /* ViewController.m in Sources */,
+				9FDA32E8188B7B7A009AE0AF /* SK8GameListDetailStatusCell.m in Sources */,
 				9F26F2D51877BFAA00187C06 /* AppDelegate.m in Sources */,
 				9F26F2D11877BFAA00187C06 /* main.m in Sources */,
 				9F26F55818786C1D00187C06 /* SideBarViewController.m in Sources */,
+				9FDA32EB188B7BA7009AE0AF /* SK8GameListDetailPlayerCell.m in Sources */,
 				9F26F2FB1878625000187C06 /* SWRevealViewController.m in Sources */,
 				9FDA32D4188A68A0009AE0AF /* SK8GameListCell.m in Sources */,
 				9FDA32DA188A7FF0009AE0AF /* SK8GameListDetailViewController.m in Sources */,

@@ -21,8 +21,8 @@
                                        @{
                                            //roomDetail
                                            @"createDate": @"2014-01-13", //dateTime
-                                           @"status": @"playing", // [ready, playing, paused, ended]
-                                           @"name": @"Kabkee's room1", //string
+                                           @"status": @"Playing", // [Ready, Playing, Paused, Ended]
+                                           @"title": @"Kabkee's room1", //string
                                            @"gameStartTime": @"2014-01-15", //dateTime
                                            @"maxPpl":@5, // max 5 ppl
                                            @"players":@[@"kabkee",@"Gomsun2", @"Minsu"], //array // attOrder
@@ -56,8 +56,8 @@
                                        @{
                                            //roomDetail
                                            @"createDate": @"2014-01-20", //dateTime
-                                           @"status": @"playing", // [ready, playing, paused, ended]
-                                           @"name": @"Kabkee's room2", //string
+                                           @"status": @"Paused", // [Ready, Playing, Paused, Ended]
+                                           @"title": @"Gomsun2's room2", //string
                                            @"gameStartTime": @"2014-01-21", //dateTime
                                            @"maxPpl":@3, // max 5 ppl
                                            @"players":@[@"kabkee",@"Gomsun2"], //array // attOrder

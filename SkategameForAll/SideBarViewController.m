@@ -118,9 +118,15 @@
     // Pass the selected object to the new view controller.
     
     // Set the title of navigation bar by using the menu items
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     UINavigationController *destViewController = (UINavigationController*)segue.destinationViewController;
-    destViewController.title = [[menuItems objectAtIndex:indexPath.row] capitalizedString];
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+
+    if ([[menuItems objectAtIndex:indexPath.row] isEqualToString:@"Sk8Game List"]) {
+        destViewController.title = @"List";
+    }else{
+        destViewController.title = [[menuItems objectAtIndex:indexPath.row] capitalizedString];
+    }
+
     
     if ( [segue isKindOfClass: [SWRevealViewControllerSegue class]] ) {
         SWRevealViewControllerSegue *swSegue = (SWRevealViewControllerSegue*) segue;

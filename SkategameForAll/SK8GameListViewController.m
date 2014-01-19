@@ -9,11 +9,15 @@
 #import "SK8GameListViewController.h"
 #import "SWRevealViewController.h"
 #import "AppDelegate.h"
+#import "SK8GameListCell.h"
+#import "SK8GameListDetailViewController.h"
 
 @interface SK8GameListViewController ()
 @property UIImage * Image_BlockMenuBarButton;
 @property UIButton * Btn_ForCustomBarButtonItem;
 @property NSDictionary * DicGameList;
+@property NSDictionary * RoomDetails;
+@property NSString *RoomDetailTitle; // roomTitle for roomDetailTableView
 
 @end
 
@@ -77,20 +81,70 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *SimpleTableIdentifier = @"SimpleTableIdentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SimpleTableIdentifier];
+    static NSString *cellIdentifier = @"cell";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SimpleTableIdentifier];
+    SK8GameListCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: SimpleTableIdentifier];
+        cell = [[SK8GameListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: cellIdentifier];
         
     }
-//    NSInteger row = [indexPath row];
+    
     NSMutableArray *keys = [[NSMutableArray alloc] initWithArray:[self.DicGameList allKeys]];
-//    if (indexPath.row) {
-        cell.textLabel.text = keys[indexPath.row];
-//    }
+    NSInteger row = [indexPath row];
+
+    if( [self.DicGameList valueForKey:keys[row]]){
+        NSDictionary * dic = [self.DicGameList valueForKey:keys[row]];
+        
+        //createDate, status, title, gameStartTime
+        cell.roomCreateDate.text = [dic valueForKey:@"createDate"];
+        cell.roomStartDate.text = [dic valueForKey:@"gameStartTime"];
+//        cell.roomStatus.text = [dic valueForKey:@"status"];
+        cell.roomTitle.text = [dic valueForKey:@"title"];
+        NSString *imgName = [dic valueForKey:@"status"];
+        cell.roomStatusImg.image = [UIImage imageNamed: [NSString stringWithFormat:@"%@.png", imgName]];
+    }
+    return cell;
+}
+
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//
+//    NSMutableArray *keys = [[NSMutableArray alloc] initWithArray:[self.DicGameList allKeys]];
+//    NSInteger row = [indexPath row];
+//
+//    self.roomDetails = [self.DicGameList valueForKey:keys[row]];
+////
+////    SK8GameListCell *cell = (SK8GameListCell *)[tableView cellForRowAtIndexPath:indexPath];
+////    UINavigationController *destViewController = (UINavigationController*)segue.destinationViewController;
+////    destViewController.title = cell.roomTitle.text;
+//
+//    SK8GameListDetailViewController *vc = [[SK8GameListDetailViewController alloc]init];
+//    vc.roomDetails = self.RoomDetails;
+//    NSLog(@"self.RoomDetails : %@",self.RoomDetails);
+////    [destViewController addChildViewController:vc];
+//
+//    
+//    [self performSegueWithIdentifier:@"sk8gameDetail" sender:self];
+//
+//}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    SK8GameListCell *cell = sender;
+    UINavigationController *destViewController = (UINavigationController*)segue.destinationViewController;
+    destViewController.title = cell.roomTitle.text;
+    
+    // passing room detail data to Sk8GameDetailViewController
+    if([segue.identifier isEqualToString:@"sk8gameDetail"]){
+        SK8GameListDetailViewController * sk8vc = [segue destinationViewController];
+        NSIndexPath * idxPath = [self.TableViewGamelist indexPathForCell:sender];
+        NSMutableArray *keys = [[NSMutableArray alloc] initWithArray:[self.DicGameList allKeys]];
+        NSInteger row = [idxPath row];
+        self.RoomDetails = [self.DicGameList valueForKey:keys[row]];
+        sk8vc.roomDetails = self.RoomDetails;
+    }
 
     
-    return cell;
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SK8GameListDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegate>
+@interface SK8GameListDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableViewGameDetail;
 @property UICollectionView * collectionViewForVideo;

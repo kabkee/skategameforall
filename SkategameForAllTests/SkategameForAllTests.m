@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "SK8GameNewStartDateCell.h"
 
 @interface SkategameForAllTests : XCTestCase
 @property NSString * jsonString;
@@ -151,20 +152,30 @@
 }
 
 
-- (void)testJsonSerializationToArray // JsonSerializationToArray is not supported
+- (void)testJsonSerializationFromServer
 {
-    //    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-    NSLog(@"Json : %@", self.jsonString);
+    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:5000/getRoom"]];
+    NSData *jsonData = [NSData dataWithContentsOfURL:url];
+    NSError * error;
+    NSDictionary *jsonInfo = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
     
-//    NSData *jsonData = [self.jsonString dataUsingEncoding:NSUTF8StringEncoding];
-//    NSError * error;
+
+    XCTAssert([[[jsonInfo valueForKey:@"room1"] valueForKey:@"status"] isEqualToString: @"Playing"], @"not equal");
     
-//    NSArray * parsedData = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
-    
-    //    XCTAssert([parsedData[0][0] isEqualToString: @"playing"], @"not equal");
-    
-//    NSLog(@" Room1's Status : %@", parsedData[0]);
+    if (error) {
+        NSLog(@"Error : %@", [error localizedDescription]);
+    }else{
+        NSLog(@" Room1's Status : %@", [[jsonInfo valueForKey:@"room1"] valueForKey:@"status"]);
+    }
+}
+
+- (void)testSK8GameNewStartDateCellMinDate
+{
+    // should initiate with mindate is TODAY
+    SK8GameNewStartDateCell * startDateCell = [[SK8GameNewStartDateCell alloc] init];
+    NSLog(@"mindate : %@", startDateCell.datePickerStartAt.minimumDate);
     
 }
+
 
 @end

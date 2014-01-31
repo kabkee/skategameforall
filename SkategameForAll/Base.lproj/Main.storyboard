@@ -174,7 +174,7 @@
                                             <outlet property="roomStartDate" destination="Fq7-aN-s0B" id="k4s-xE-GNq"/>
                                             <outlet property="roomStatusImg" destination="rC9-DX-fjn" id="ILI-qX-oQG"/>
                                             <outlet property="roomTitle" destination="kM4-ju-I7L" id="46c-Gg-cOp"/>
-                                            <segue destination="hOh-o3-xhJ" kind="push" identifier="sk8gameDetail" id="2jU-fR-0W9"/>
+                                            <segue destination="hOh-o3-xhJ" kind="push" identifier="SK8GameDetail" id="2jU-fR-0W9"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -190,11 +190,56 @@
                         <outlet property="BtnSearch" destination="MQj-GM-qvT" id="biA-NQ-pgh"/>
                         <outlet property="BtnStarred" destination="aax-92-0h8" id="AOG-1J-5ib"/>
                         <outlet property="TableViewGamelist" destination="WkU-xc-9ed" id="QSR-a8-8Sp"/>
+                        <segue destination="zVu-5G-D0t" kind="modal" identifier="SK8GameNewModal" id="tpZ-Hy-YK8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WKR-TJ-t7u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="843" y="-389"/>
+        </scene>
+        <!--Game New Table View Controller - New Game Room-->
+        <scene sceneID="goE-PF-ZXH">
+            <objects>
+                <tableViewController id="lsR-2b-LwZ" customClass="SK8GameNewTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="476" sectionHeaderHeight="22" sectionFooterHeight="22" id="UbZ-kD-YVC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="44" id="gvY-dG-xJz">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gvY-dG-xJz" id="G1H-L0-qdz">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="lsR-2b-LwZ" id="Hml-7Q-oUP"/>
+                            <outlet property="delegate" destination="lsR-2b-LwZ" id="gde-CX-Zdo"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="New Game Room" id="iab-Zg-tXw">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="zBz-zQ-Kp7">
+                            <connections>
+                                <action selector="ClickedBarBtnLeftCancel:" destination="lsR-2b-LwZ" id="lTn-Rf-liE"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="done" id="jtq-IT-mpx">
+                            <connections>
+                                <action selector="ClickedBarBtnRightDone:" destination="lsR-2b-LwZ" id="0EJ-uM-W2D"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="barBtnLeftCancel" destination="zBz-zQ-Kp7" id="pon-kH-9vU"/>
+                        <outlet property="barBtnRightDone" destination="jtq-IT-mpx" id="xQY-69-0vE"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="24O-bX-Ilg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1688" y="-1081"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="usq-XX-iNu">
@@ -403,50 +448,23 @@
             </objects>
             <point key="canvasLocation" x="1278" y="-389"/>
         </scene>
-        <!--Collection View Controller-->
-        <scene sceneID="bFl-58-u1P">
+        <!--Navigation Controller-->
+        <scene sceneID="eqy-Rx-Xbi">
             <objects>
-                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="MrP-xI-hvb" sceneMemberID="viewController">
-                    <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="Yte-iu-n7j">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lHs-Iz-RyE">
-                            <size key="itemSize" width="152" height="200"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gzo-pZ-tmN">
-                                <rect key="frame" x="0.0" y="0.0" width="152" height="125"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="152" height="125"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <size key="customSize" width="152" height="125"/>
-                            </collectionViewCell>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="WVU-1m-yiV">
-                                <rect key="frame" x="168" y="0.0" width="152" height="125"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="152" height="125"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <size key="customSize" width="152" height="125"/>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="MrP-xI-hvb" id="4Ce-yn-PbP"/>
-                            <outlet property="delegate" destination="MrP-xI-hvb" id="kFa-MI-Utn"/>
-                        </connections>
-                    </collectionView>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mJ8-51-pna" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zVu-5G-D0t" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dpf-9N-73j">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="lsR-2b-LwZ" kind="relationship" relationship="rootViewController" id="171-fa-5Ch"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q4v-Lk-IWa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1634" y="-389"/>
+            <point key="canvasLocation" x="1162" y="-1081"/>
         </scene>
     </scenes>
     <resources>

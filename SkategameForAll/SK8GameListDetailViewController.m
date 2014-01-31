@@ -8,7 +8,7 @@
 
 #import "SK8GameListDetailViewController.h"
 #import "SK8GameListDetailCell.h"
-#import "AppDelegate.h"
+//#import "AppDelegate.h"
 #import "SK8GameListDetailStatusCell.h"
 #import "SK8GameListDetailPlayerCell.h"
 

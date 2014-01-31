@@ -14,6 +14,7 @@
 @property NSDictionary * tempGameList;
 
 
-
+// Only for Test, For production please delete all the below;
+@property BOOL onlineOn;
 
 @end

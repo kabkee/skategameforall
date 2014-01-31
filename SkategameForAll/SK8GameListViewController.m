@@ -18,6 +18,7 @@
 @property NSDictionary * DicGameList;
 @property NSDictionary * RoomDetails;
 @property NSString *RoomDetailTitle; // roomTitle for roomDetailTableView
+@property UITableViewController * tableViewControllerForRefreshControl;
 
 @end
 
@@ -63,6 +64,21 @@
     
     self.TableViewGamelist.dataSource = self;
     self.TableViewGamelist.delegate = self;
+    
+    
+    // UIRefreshControl
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init]; [refreshControl addTarget:self action:@selector(updateDataSource) forControlEvents:UIControlEventValueChanged];
+    
+    self.tableViewControllerForRefreshControl = [[UITableViewController alloc] init];
+    self.tableViewControllerForRefreshControl.tableView = self.TableViewGamelist;
+    self.tableViewControllerForRefreshControl.refreshControl = refreshControl;
+    
+}
+
+- (void)updateDataSource
+{
+    [self.TableViewGamelist reloadData];
+    [self.tableViewControllerForRefreshControl.refreshControl endRefreshing];
 }
 
 - (void)didReceiveMemoryWarning
@@ -71,12 +87,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - NewRoom Modal
 - (void)showUpNewRoomModal
 {
     [self performSegueWithIdentifier:@"SK8GameNewModal" sender:self];
 }
 
-
+#pragma mark - TableView DataSource
 - (int)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -87,6 +104,7 @@
     return self.DicGameList.count;
 }
 
+#pragma mark - TableView Delegate
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellIdentifier = @"cell";
@@ -120,7 +138,12 @@
         return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView cellForRowAtIndexPath:indexPath].selected = NO;
+}
 
+#pragma mark - PrepareForSegue
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // passing room detail data to Sk8GameDetailViewController

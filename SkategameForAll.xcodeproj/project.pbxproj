@@ -46,6 +46,9 @@
 		9FDA32F0188B9D48009AE0AF /* SK8GameListDetailPlayerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FDA32EF188B9D48009AE0AF /* SK8GameListDetailPlayerCell.xib */; };
 		9FDA32F2188B9D66009AE0AF /* SK8GameListDetailStatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FDA32F1188B9D66009AE0AF /* SK8GameListDetailStatusCell.xib */; };
 		9FDD40911884418F005084B6 /* SkategameForAllTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FDD40901884418F005084B6 /* SkategameForAllTests.m */; };
+		9FE5ED0A189B71E90064DA96 /* ready.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FE5ED09189B71E90064DA96 /* ready.png */; };
+		9FE5ED0D189B87430064DA96 /* SK8GameNewAutoAttackOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FE5ED0C189B87430064DA96 /* SK8GameNewAutoAttackOrderCell.m */; };
+		9FE5ED11189B875C0064DA96 /* SK8GameNewAutoAttackOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FE5ED10189B875C0064DA96 /* SK8GameNewAutoAttackOrderCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +119,10 @@
 		9FDA32EF188B9D48009AE0AF /* SK8GameListDetailPlayerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SK8GameListDetailPlayerCell.xib; sourceTree = "<group>"; };
 		9FDA32F1188B9D66009AE0AF /* SK8GameListDetailStatusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SK8GameListDetailStatusCell.xib; sourceTree = "<group>"; };
 		9FDD40901884418F005084B6 /* SkategameForAllTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkategameForAllTests.m; sourceTree = "<group>"; };
+		9FE5ED09189B71E90064DA96 /* ready.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ready.png; sourceTree = "<group>"; };
+		9FE5ED0B189B87430064DA96 /* SK8GameNewAutoAttackOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SK8GameNewAutoAttackOrderCell.h; sourceTree = "<group>"; };
+		9FE5ED0C189B87430064DA96 /* SK8GameNewAutoAttackOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SK8GameNewAutoAttackOrderCell.m; sourceTree = "<group>"; };
+		9FE5ED10189B875C0064DA96 /* SK8GameNewAutoAttackOrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SK8GameNewAutoAttackOrderCell.xib; path = ../SK8GameNewAutoAttackOrderCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +241,7 @@
 		9F26F5591878724C00187C06 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				9FE5ED09189B71E90064DA96 /* ready.png */,
 				9FDA32E0188A8229009AE0AF /* ended.png */,
 				9FDA32E1188A8229009AE0AF /* paused.png */,
 				9FDA32E2188A8229009AE0AF /* playing.png */,
@@ -268,6 +276,9 @@
 				9F3FF631189B275E000529E8 /* SK8GameNewLimitDayCell.h */,
 				9F3FF632189B275E000529E8 /* SK8GameNewLimitDayCell.m */,
 				9F3FF62F189B2746000529E8 /* SK8GameNewLimitDayCell.xib */,
+				9FE5ED0B189B87430064DA96 /* SK8GameNewAutoAttackOrderCell.h */,
+				9FE5ED0C189B87430064DA96 /* SK8GameNewAutoAttackOrderCell.m */,
+				9FE5ED10189B875C0064DA96 /* SK8GameNewAutoAttackOrderCell.xib */,
 			);
 			name = customCells;
 			sourceTree = "<group>";
@@ -386,8 +397,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FC1426118966BDF0051E97C /* SocialLoginPage.xib in Resources */,
+				9FE5ED0A189B71E90064DA96 /* ready.png in Resources */,
 				9FC142AF1899EBCF0051E97C /* SK8GameNewTitleCell.xib in Resources */,
 				9F2BCD2A189A0CA1009F08E4 /* SK8GameNewStartDateCell.xib in Resources */,
+				9FE5ED11189B875C0064DA96 /* SK8GameNewAutoAttackOrderCell.xib in Resources */,
 				9F26F2DD1877BFAA00187C06 /* Images.xcassets in Resources */,
 				9F26F562187903CE00187C06 /* block-menu.png in Resources */,
 				9FDA32F0188B9D48009AE0AF /* SK8GameListDetailPlayerCell.xib in Resources */,
@@ -426,6 +439,7 @@
 				9F26F55818786C1D00187C06 /* SideBarViewController.m in Sources */,
 				9FDA32EB188B7BA7009AE0AF /* SK8GameListDetailPlayerCell.m in Sources */,
 				9F26F2FB1878625000187C06 /* SWRevealViewController.m in Sources */,
+				9FE5ED0D189B87430064DA96 /* SK8GameNewAutoAttackOrderCell.m in Sources */,
 				9FDA32D4188A68A0009AE0AF /* SK8GameListCell.m in Sources */,
 				9FC142B81899EEF40051E97C /* SK8GameNewPasswordCell.m in Sources */,
 				9F3FF633189B275E000529E8 /* SK8GameNewLimitDayCell.m in Sources */,

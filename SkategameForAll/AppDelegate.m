@@ -13,103 +13,143 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    // if Online Mode = YES, if NOT = NO;
+    self.onlineOn = NO;
     
     if(!tempGameList){
 
-//        NSDictionary *jsonInfo = @{@"room1":
-//                                       @{
-//                                           //roomDetail
-//                                           @"createDate": @"2014-01-13", //dateTime
-//                                           @"status": @"Playing", // [Ready, Playing, Paused, Ended]
-//                                           @"title": @"Kabkee's room1", //string
-//                                           @"gameStartTime": @"2014-01-15", //dateTime
-//                                           @"maxPpl":@5, // max 5 ppl
-//                                           @"players":@[@"kabkee",@"Gomsun2", @"Minsu"], //array // attOrder
-//                                           @"watchers":@[@"kabkeeWC",@"Gomsun2WC", @"MinsuWC", @"SuminWC", @"DanbeeWC", @"HyojuWC"], // array
-//                                           @"clikingNo":@100, // int
-//                                           @"starred":@[@"kabkeeST",@"Gomsun2ST", @"MinsuST", @"SuminST", @"DanbeeST", @"HyojuST"], // array
-//                                           @"attLimitDay":@7, // int Days
-//                                           @"defLimitDay":@7, // int Days
-//                                           @"orderAttAutomate":@NO, //boolean
-//                                           //gameDetail
-//                                           @"statusOfAtt":@YES, //booean Att=YES, Def=NO
-//                                           @"attacker":@"kabkee",
-//                                           @"defender":@[@"Gomsun2"], // who uploaded def video
-//                                           @"videos":@[
-//                                                   @{@"statusOfAtt": @YES,
-//                                                     @"videoAdd":@"http://urlAtt.com",
-//                                                     @"regTime":@"2014-01-14",
-//                                                     @"title":@"kickflip",
-//                                                     @"player":@"kabkee"},
-//                                                   @{@"statusOfAtt": @NO,
-//                                                     @"videoAdd":@"http://urlDef.com",
-//                                                     @"regTime":@"2014-01-15",
-//                                                     @"title":@"kickflip",
-//                                                     @"player":@"Gomsun2"}
-//                                                   ],
-//                                           @"scores":@{@"kabkee": @2,
-//                                                       @"Gomsun2": @3,
-//                                                       @"Minsu": @5} // S(1), K(2), A(3), T(4), E(5)= over
-//                                           },
-//                                   @"room2":
-//                                       @{
-//                                           //roomDetail
-//                                           @"createDate": @"2014-01-20", //dateTime
-//                                           @"status": @"Paused", // [Ready, Playing, Paused, Ended]
-//                                           @"title": @"Gomsun2's room2", //string
-//                                           @"gameStartTime": @"2014-01-21", //dateTime
-//                                           @"maxPpl":@3, // max 5 ppl
-//                                           @"players":@[@"kabkee",@"Gomsun2"], //array // attOrder
-//                                           @"watchers":@[@"DanbeeWC2", @"HyojuWC2"], // array
-//                                           @"clikingNo":@100, // int
-//                                           @"starred":@[@"SuminST2", @"DanbeeST2", @"HyojuST2"], // array
-//                                           @"attLimitDay":@7, // int Days
-//                                           @"defLimitDay":@7, // int Days
-//                                           @"orderAttAutomate":@NO, //boolean
-//                                           //gameDetail
-//                                           @"statusOfAtt":@YES, //booean Att=YES, Def=NO
-//                                           @"attacker":@"kabkee",
-//                                           @"defender":@[@"Gomsun2"], // who uploaded def video
-//                                           @"videos":@[
-//                                                   @{@"statusOfAtt": @YES,
-//                                                     @"videoAdd":@"http://urlAtt.com",
-//                                                     @"regTime":@"2014-01-14",
-//                                                     @"title":@"kickflip",
-//                                                     @"player":@"kabkee"},
-//                                                   @{@"statusOfAtt": @NO,
-//                                                     @"videoAdd":@"http://urlDef.com",
-//                                                     @"regTime":@"2014-01-15",
-//                                                     @"title":@"kickflip",
-//                                                     @"player":@"Gomsun2"}
-//                                                   ],
-//                                           @"scores":@{@"kabkee": @4,
-//                                                       @"Gomsun2": @4} // S(1), K(2), A(3), T(4), E(5)= over
-//                                           },
-//                                   };
+        NSDictionary *jsonInfo = @{@"room1":
+                                       @{
+                                           //roomDetail
+                                           @"createDate": @"2014-01-13", //dateTime
+                                           @"status": @"Playing", // [Ready, Playing, Paused, Ended]
+                                           @"title": @"Kabkee's room1", //string
+                                           @"gameStartTime": @"2014-01-15", //dateTime
+                                           @"maxPpl":@5, // max 5 ppl
+                                           @"players":@[@"kabkee",@"Gomsun2", @"Minsu"], //array // attOrder
+                                           @"watchers":@[@"kabkeeWC",@"Gomsun2WC", @"MinsuWC", @"SuminWC", @"DanbeeWC", @"HyojuWC"], // array
+                                           @"clikingNo":@100, // int
+                                           @"starred":@[@"kabkeeST",@"Gomsun2ST", @"MinsuST", @"SuminST", @"DanbeeST", @"HyojuST"], // array
+                                           @"attLimitDay":@7, // int Days
+                                           @"defLimitDay":@7, // int Days
+                                           @"orderAttAutomate":@NO, //boolean
+                                           //gameDetail
+                                           @"statusOfAtt":@YES, //booean Att=YES, Def=NO
+                                           @"attacker":@"kabkee",
+                                           @"defender":@[@"Gomsun2"], // who uploaded def video
+                                           @"videos":@[
+                                                   @{@"statusOfAtt": @YES,
+                                                     @"videoAdd":@"http://urlAtt.com",
+                                                     @"regTime":@"2014-01-14",
+                                                     @"title":@"kickflip",
+                                                     @"player":@"kabkee"},
+                                                   @{@"statusOfAtt": @NO,
+                                                     @"videoAdd":@"http://urlDef.com",
+                                                     @"regTime":@"2014-01-15",
+                                                     @"title":@"kickflip",
+                                                     @"player":@"Gomsun2"}
+                                                   ],
+                                           @"scores":@{@"kabkee": @2,
+                                                       @"Gomsun2": @3,
+                                                       @"Minsu": @5} // S(1), K(2), A(3), T(4), E(5)= over
+                                           },
+                                   @"room2":
+                                       @{
+                                           //roomDetail
+                                           @"createDate": @"2014-01-20", //dateTime
+                                           @"status": @"Paused", // [Ready, Playing, Paused, Ended]
+                                           @"title": @"Gomsun2's room2", //string
+                                           @"gameStartTime": @"2014-01-21", //dateTime
+                                           @"maxPpl":@3, // max 5 ppl
+                                           @"players":@[@"kabkee",@"Gomsun2"], //array // attOrder
+                                           @"watchers":@[@"DanbeeWC2", @"HyojuWC2"], // array
+                                           @"clikingNo":@100, // int
+                                           @"starred":@[@"SuminST2", @"DanbeeST2", @"HyojuST2"], // array
+                                           @"attLimitDay":@7, // int Days
+                                           @"defLimitDay":@7, // int Days
+                                           @"orderAttAutomate":@NO, //boolean
+                                           //gameDetail
+                                           @"statusOfAtt":@YES, //booean Att=YES, Def=NO
+                                           @"attacker":@"kabkee",
+                                           @"defender":@[@"Gomsun2"], // who uploaded def video
+                                           @"videos":@[
+                                                   @{@"statusOfAtt": @YES,
+                                                     @"videoAdd":@"http://urlAtt.com",
+                                                     @"regTime":@"2014-01-14",
+                                                     @"title":@"kickflip",
+                                                     @"player":@"kabkee"},
+                                                   @{@"statusOfAtt": @NO,
+                                                     @"videoAdd":@"http://urlDef.com",
+                                                     @"regTime":@"2014-01-15",
+                                                     @"title":@"kickflip",
+                                                     @"player":@"Gomsun2"}
+                                                   ],
+                                           @"scores":@{@"kabkee": @4,
+                                                       @"Gomsun2": @4} // S(1), K(2), A(3), T(4), E(5)= over
+                                           },
+                                   @"room3":
+                                       @{
+                                           //roomDetail
+                                           @"createDate": @"2014-01-31", //dateTime
+                                           @"status": @"Ready", // [Ready, Playing, Paused, Ended]
+                                           @"title": @"NoOne's room2", //string
+                                           @"gameStartTime": @"2014-02-21", //dateTime
+                                           @"maxPpl":@5, // max 5 ppl
+                                           @"players":@[@"kabkee",@"Gomsun2"], //array // attOrder
+                                           @"watchers":@[@"DanbeeWC2", @"HyojuWC2"], // array
+                                           @"clikingNo":@100, // int
+                                           @"starred":@[@"SuminST2", @"DanbeeST2", @"HyojuST2"], // array
+                                           @"attLimitDay":@7, // int Days
+                                           @"defLimitDay":@7, // int Days
+                                           @"orderAttAutomate":@NO, //boolean
+                                           //gameDetail
+                                           @"statusOfAtt":@YES, //booean Att=YES, Def=NO
+                                           @"attacker":@"kabkee",
+                                           @"defender":@[@"Gomsun2"], // who uploaded def video
+                                           @"videos":@[
+                                                   @{@"statusOfAtt": @YES,
+                                                     @"videoAdd":@"http://urlAtt.com",
+                                                     @"regTime":@"2014-01-14",
+                                                     @"title":@"kickflip",
+                                                     @"player":@"kabkee"},
+                                                   @{@"statusOfAtt": @NO,
+                                                     @"videoAdd":@"http://urlDef.com",
+                                                     @"regTime":@"2014-01-15",
+                                                     @"title":@"kickflip",
+                                                     @"player":@"Gomsun2"}
+                                                   ],
+                                           @"scores":@{@"kabkee": @4,
+                                                       @"Gomsun2": @4} // S(1), K(2), A(3), T(4), E(5)= over
+                                           }
+                                   };
         
-        
-//        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonInfo options:NSJSONWritingPrettyPrinted error: &error];
-        
+
+        NSData * jsonData;
         NSError * error;
-        NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:5000/getRoom"]];
-        NSData *jsonData = [NSData dataWithContentsOfURL:url];
         
-        if (jsonData) {
-            tempGameList = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error: &error];
+        if (self.onlineOn) {
+            NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:5000/getRoom"]];
+            jsonData = [NSData dataWithContentsOfURL:url];
+            if (!jsonData) {
+                // Just for insurance
+                tempGameList = @{@"": @""};
+                return YES;
+            }
+        }else{
+         
+            jsonData = [NSJSONSerialization dataWithJSONObject:jsonInfo options:NSJSONWritingPrettyPrinted error: &error];
             if (error) {
                 NSLog(@"Error : @%@", [error description]);
             }else{
-                // if not error
+                // Nothing to do
             }
-            
-        }else{
-            tempGameList = @{@"": @""};
         }
+        tempGameList= [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
+        
     }
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

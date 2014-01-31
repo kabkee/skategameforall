@@ -14,6 +14,8 @@
 
 @interface SK8GameListDetailViewController ()
 @property NSArray * sectionTitleArray;
+@property UITableViewController * tableViewControllerForRefreshControl;
+
 @end
 
 @implementation SK8GameListDetailViewController
@@ -40,6 +42,20 @@
     
     self.sectionTitleArray = @[@"Status", @"Participants", @"Watchers"];
 //    NSLog(@"roomDetails : %@", self.roomDetails);
+    
+    // UIRefreshControl
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init]; [refreshControl addTarget:self action:@selector(updateDataSource) forControlEvents:UIControlEventValueChanged];
+    
+    self.tableViewControllerForRefreshControl = [[UITableViewController alloc] init];
+    self.tableViewControllerForRefreshControl.tableView = self.tableViewGameDetail;
+    self.tableViewControllerForRefreshControl.refreshControl = refreshControl;
+    
+}
+
+- (void)updateDataSource
+{
+    [self.tableViewGameDetail reloadData];
+    [self.tableViewControllerForRefreshControl.refreshControl endRefreshing];
 }
 
 - (void)didReceiveMemoryWarning

@@ -14,6 +14,7 @@
 #import "SK8GameNewPasswordCell.h"
 #import "SK8GameNewStartDateCell.h"
 #import "SK8GameNewLimitDayCell.h"
+#import "SK8GameNewAutoAttackOrderCell.h"
 
 @interface SK8GameNewTableViewController ()
 @property (strong, nonatomic) SK8GameNewStartDateCell * startDateCell;
@@ -50,8 +51,8 @@
 {
     [super viewDidLoad];
     
-    self.cellArray = [[NSArray alloc]initWithObjects:@"titleCell", @"passwordCell", @"startAtCell", @"limitDayCell", @"limitDayCell", nil];
-    self.cellNibArray = [[NSArray alloc]initWithObjects:@"SK8GameNewTitleCell", @"SK8GameNewPasswordCell", @"SK8GameNewStartDateCell", @"SK8GameNewLimitDayCell", @"SK8GameNewLimitDayCell", nil];
+    self.cellArray = [[NSArray alloc]initWithObjects:@"titleCell", @"passwordCell", @"startAtCell", @"limitDayCell", @"limitDayCell", @"autoAttCell", nil];
+    self.cellNibArray = [[NSArray alloc]initWithObjects:@"SK8GameNewTitleCell", @"SK8GameNewPasswordCell", @"SK8GameNewStartDateCell", @"SK8GameNewLimitDayCell", @"SK8GameNewLimitDayCell", @"SK8GameNewAutoAttackOrderCell", nil];
 
     self.pickerViewDays = [[NSMutableArray alloc]init];
     for (int i =0; i< 14; i++) {
@@ -174,10 +175,18 @@
             }
             self.defLimitDayCell = limitDayCell;
         }
-        
+
         return limitDayCell;
     }
+    if (indexPath.row == 5) {
+        NSString *CellIdentifier = [self.cellArray objectAtIndex:indexPath.row]; // @"autoAttCell"
+        SK8GameNewAutoAttackOrderCell * autoAttCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (autoAttCell == nil) {
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed: [self.cellNibArray objectAtIndex:indexPath.row] owner:self options:nil];
+            autoAttCell = [nib objectAtIndex:0];
+        }
 
+    }
     // Default Cell
     static NSString *CellIdentifier = @"cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];

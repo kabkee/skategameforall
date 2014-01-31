@@ -27,6 +27,8 @@
 		9F26F569187913EB00187C06 /* SK8GameListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F26F568187913EB00187C06 /* SK8GameListViewController.m */; };
 		9F2BCD26189A0C85009F08E4 /* SK8GameNewStartDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2BCD25189A0C85009F08E4 /* SK8GameNewStartDateCell.m */; };
 		9F2BCD2A189A0CA1009F08E4 /* SK8GameNewStartDateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F2BCD29189A0CA1009F08E4 /* SK8GameNewStartDateCell.xib */; };
+		9F3FF630189B2746000529E8 /* SK8GameNewLimitDayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F3FF62F189B2746000529E8 /* SK8GameNewLimitDayCell.xib */; };
+		9F3FF633189B275E000529E8 /* SK8GameNewLimitDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3FF632189B275E000529E8 /* SK8GameNewLimitDayCell.m */; };
 		9FC1426118966BDF0051E97C /* SocialLoginPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FC1426018966BDF0051E97C /* SocialLoginPage.xib */; };
 		9FC142AB18990A290051E97C /* SK8GameNewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC142A918990A290051E97C /* SK8GameNewTableViewController.m */; };
 		9FC142AF1899EBCF0051E97C /* SK8GameNewTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FC142AE1899EBCF0051E97C /* SK8GameNewTitleCell.xib */; };
@@ -86,6 +88,9 @@
 		9F2BCD24189A0C85009F08E4 /* SK8GameNewStartDateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SK8GameNewStartDateCell.h; sourceTree = "<group>"; };
 		9F2BCD25189A0C85009F08E4 /* SK8GameNewStartDateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SK8GameNewStartDateCell.m; sourceTree = "<group>"; };
 		9F2BCD29189A0CA1009F08E4 /* SK8GameNewStartDateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SK8GameNewStartDateCell.xib; sourceTree = "<group>"; };
+		9F3FF62F189B2746000529E8 /* SK8GameNewLimitDayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SK8GameNewLimitDayCell.xib; sourceTree = "<group>"; };
+		9F3FF631189B275E000529E8 /* SK8GameNewLimitDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SK8GameNewLimitDayCell.h; sourceTree = "<group>"; };
+		9F3FF632189B275E000529E8 /* SK8GameNewLimitDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SK8GameNewLimitDayCell.m; sourceTree = "<group>"; };
 		9FC1426018966BDF0051E97C /* SocialLoginPage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialLoginPage.xib; sourceTree = "<group>"; };
 		9FC142A818990A290051E97C /* SK8GameNewTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SK8GameNewTableViewController.h; sourceTree = "<group>"; };
 		9FC142A918990A290051E97C /* SK8GameNewTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SK8GameNewTableViewController.m; sourceTree = "<group>"; };
@@ -260,6 +265,9 @@
 				9F2BCD24189A0C85009F08E4 /* SK8GameNewStartDateCell.h */,
 				9F2BCD25189A0C85009F08E4 /* SK8GameNewStartDateCell.m */,
 				9F2BCD29189A0CA1009F08E4 /* SK8GameNewStartDateCell.xib */,
+				9F3FF631189B275E000529E8 /* SK8GameNewLimitDayCell.h */,
+				9F3FF632189B275E000529E8 /* SK8GameNewLimitDayCell.m */,
+				9F3FF62F189B2746000529E8 /* SK8GameNewLimitDayCell.xib */,
 			);
 			name = customCells;
 			sourceTree = "<group>";
@@ -388,6 +396,7 @@
 				9FDA32E3188A8229009AE0AF /* ended.png in Resources */,
 				9F26F2CF1877BFAA00187C06 /* InfoPlist.strings in Resources */,
 				9F26F563187903CE00187C06 /* list-circle.png in Resources */,
+				9F3FF630189B2746000529E8 /* SK8GameNewLimitDayCell.xib in Resources */,
 				9FDA32E4188A8229009AE0AF /* paused.png in Resources */,
 				9FC142B11899EC3D0051E97C /* SK8GameNewPasswordCell.xib in Resources */,
 				9F26F2D81877BFAA00187C06 /* Main.storyboard in Resources */,
@@ -419,6 +428,7 @@
 				9F26F2FB1878625000187C06 /* SWRevealViewController.m in Sources */,
 				9FDA32D4188A68A0009AE0AF /* SK8GameListCell.m in Sources */,
 				9FC142B81899EEF40051E97C /* SK8GameNewPasswordCell.m in Sources */,
+				9F3FF633189B275E000529E8 /* SK8GameNewLimitDayCell.m in Sources */,
 				9FDA32DA188A7FF0009AE0AF /* SK8GameListDetailViewController.m in Sources */,
 				9FC142B41899EEAD0051E97C /* SK8GameNewTitleCell.m in Sources */,
 				9FDA32DD188A8070009AE0AF /* SK8GameListDetailCell.m in Sources */,

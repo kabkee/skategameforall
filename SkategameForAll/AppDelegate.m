@@ -33,7 +33,7 @@
 //                                           @"defLimitDay":@7, // int Days
 //                                           @"orderAttAutomate":@NO, //boolean
 //                                           //gameDetail
-//                                           @"statusOfOrAtt":@YES, //booean Att=YES, Def=NO
+//                                           @"statusOfAtt":@YES, //booean Att=YES, Def=NO
 //                                           @"attacker":@"kabkee",
 //                                           @"defender":@[@"Gomsun2"], // who uploaded def video
 //                                           @"videos":@[
@@ -68,7 +68,7 @@
 //                                           @"defLimitDay":@7, // int Days
 //                                           @"orderAttAutomate":@NO, //boolean
 //                                           //gameDetail
-//                                           @"statusOfOrAtt":@YES, //booean Att=YES, Def=NO
+//                                           @"statusOfAtt":@YES, //booean Att=YES, Def=NO
 //                                           @"attacker":@"kabkee",
 //                                           @"defender":@[@"Gomsun2"], // who uploaded def video
 //                                           @"videos":@[

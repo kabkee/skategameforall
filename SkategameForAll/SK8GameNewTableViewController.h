@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SK8GameNewTableViewController : UITableViewController <UITextFieldDelegate>
+@interface SK8GameNewTableViewController : UITableViewController <UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *barBtnLeftCancel;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *barBtnRightDone;

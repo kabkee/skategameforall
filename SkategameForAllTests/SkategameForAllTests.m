@@ -8,10 +8,14 @@
 
 #import <XCTest/XCTest.h>
 #import "SK8GameNewStartDateCell.h"
+#import "SK8GameNewLimitDayCell.h"
 
 @interface SkategameForAllTests : XCTestCase
 @property NSString * jsonString;
 @property NSDictionary *jsonDic;
+@property SK8GameNewStartDateCell * startDateCell;
+@property SK8GameNewLimitDayCell * limitDayCell;
+
 @end
 
 @implementation SkategameForAllTests
@@ -40,7 +44,7 @@
                          @"defLimitDay":@7, // int Days
                          @"orderAttAutomate":@NO, //boolean
                          //gameDetail
-                         @"statusOfOrAtt":@YES, //booean Att=YES, Def=NO
+                         @"statusOfAtt":@YES, //booean Att=YES, Def=NO
                          @"attacker":@"kabkee",
                          @"defender":@[@"Gomsun2"], // who uploaded def video
                          @"videos":@[
@@ -76,7 +80,7 @@
                            @"defLimitDay":@7, // int Days
                            @"orderAttAutomate":@NO, //boolean
                            //gameDetail
-                           @"statusOfOrAtt":@YES, //booean Att=YES, Def=NO
+                           @"statusOfAtt":@YES, //booean Att=YES, Def=NO
                            @"attacker":@"kabkee",
                            @"defender":@[@"Gomsun2"], // who uploaded def video
                            @"videos":@[
@@ -104,6 +108,13 @@
         self.jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     }
     
+    if (!self.startDateCell) {
+        self.startDateCell = [[SK8GameNewStartDateCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    }
+    if (!self.limitDayCell) {
+        self.limitDayCell = [[SK8GameNewLimitDayCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    }
+    
 }
 
 - (void)tearDown
@@ -114,7 +125,6 @@
 
 - (void)testJsonSerializationToString
 {
-    //    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     NSLog(@"Json : %@", self.jsonString);
     
     NSData *jsonData = [self.jsonString dataUsingEncoding:NSUTF8StringEncoding];
@@ -131,21 +141,17 @@
 {
     NSDictionary *lJsonDic = self.jsonDic;
     NSMutableArray *keys = [[NSMutableArray alloc] initWithArray:[lJsonDic allKeys]];
+
 //    for (int i =0; i< lJsonDic.count; i++) {
     int i = 0;
         if( [lJsonDic valueForKey:keys[i]]){
             NSDictionary * dic = [lJsonDic valueForKey:keys[i]];
-            //createDate, status, title, gameStartTime
-//            cell.roomCreateDate = [dic valueForKey:@"createDate"];
-//            cell.roomStartDate = [dic valueForKey:@"gameStartTime"];
-//            cell.roomStatus = [dic valueForKey:@"status"];
-//            cell.roomTitle = [dic valueForKey:@"title"];
             XCTAssert( [[dic valueForKey:@"createDate"] isEqualToString:@"2014-01-13"], @"createDate is not corret" );
              XCTAssert( [[dic valueForKey:@"gameStartTime"] isEqualToString:@"2014-01-15"], @"gameStartTime is not corret" );
              XCTAssert( [[dic valueForKey:@"status"] isEqualToString:@"playing"], @"status is not corret" );
              XCTAssert( [[dic valueForKey:@"title"] isEqualToString:@"Kabkee's room1"], @"title is not corret" );
             
-//        } playing,Kabkee's room1, 2014-01-15
+//        } The results would be == playing,Kabkee's room1, 2014-01-15
 
     }
 
@@ -169,12 +175,18 @@
     }
 }
 
-- (void)testSK8GameNewStartDateCellMinDate
+- (void)testSK8GameNewStartDateCellMinimumDate
 {
     // should initiate with mindate is TODAY
-    SK8GameNewStartDateCell * startDateCell = [[SK8GameNewStartDateCell alloc] init];
-    NSLog(@"mindate : %@", startDateCell.datePickerStartAt.minimumDate);
+    NSLog(@"mindate : %@", self.startDateCell.datePickerStartAt.minimumDate);
     
+}
+
+- (void)testSK8GameNewLimitDaysCount
+{
+//    XCTAssertEqual(self.limitDayCell.numbersOfDays.count, @14, @"numbersOfDays' not matched");
+    XCTAssert(self.limitDayCell.numbersOfDays.count == 14, @"numbersOfDays' not matched");
+    NSLog(@"self.limitDayCell.numbersOfDays.count : %d",self.limitDayCell.numbersOfDays.count);
 }
 
 

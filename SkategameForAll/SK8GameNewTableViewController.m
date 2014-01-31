@@ -5,17 +5,30 @@
 //  Created by Kabkee Moon on 2014. 1. 29..
 //  Copyright (c) 2014년 Kabkee Moon. All rights reserved.
 //
+//  Written by Moon
+//  - All the class implementations don't work at all
+//  - For the every delegate and data source should be re-impelementated very single time, especially with initWithNib
 
 #import "SK8GameNewTableViewController.h"
 #import "SK8GameNewTitleCell.h"
 #import "SK8GameNewPasswordCell.h"
 #import "SK8GameNewStartDateCell.h"
+#import "SK8GameNewLimitDayCell.h"
 
 @interface SK8GameNewTableViewController ()
 @property (strong, nonatomic) SK8GameNewStartDateCell * startDateCell;
-@property (strong, nonatomic) NSDate * tempSavedDateTime;
-@property (strong, nonatomic) NSArray * cellArray;
-@property BOOL startDateCellHidden;
+@property (strong, nonatomic) SK8GameNewLimitDayCell * attLimitDayCell;
+@property (strong, nonatomic) SK8GameNewLimitDayCell * defLimitDayCell;
+@property NSDate * tempSavedDateTime;
+@property NSString * tempSavedAttLimitDay;
+@property NSString * tempSavedDefLimitDay;
+@property NSArray * cellArray;
+@property NSArray * cellNibArray;
+@property NSMutableArray * pickerViewDays;
+
+@property BOOL dateTimeCellHidden;
+@property BOOL attLimitCellHidden;
+@property BOOL defLimitCellHidden;
 
 
 @end
@@ -37,13 +50,14 @@
 {
     [super viewDidLoad];
     
-    self.cellArray = [[NSArray alloc]initWithObjects:@"titleCell", @"passwordCell", @"startAtCell", nil];
-    
-    
-    if (!self.startDateCell) {
-        self.startDateCell = [[SK8GameNewStartDateCell alloc] init];
+    self.cellArray = [[NSArray alloc]initWithObjects:@"titleCell", @"passwordCell", @"startAtCell", @"limitDayCell", @"limitDayCell", nil];
+    self.cellNibArray = [[NSArray alloc]initWithObjects:@"SK8GameNewTitleCell", @"SK8GameNewPasswordCell", @"SK8GameNewStartDateCell", @"SK8GameNewLimitDayCell", @"SK8GameNewLimitDayCell", nil];
+
+    self.pickerViewDays = [[NSMutableArray alloc]init];
+    for (int i =0; i< 14; i++) {
+        [self.pickerViewDays addObject:[NSString stringWithFormat:@"%d", i+1]];
     }
-    
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,6 +65,20 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Switch method to Enable or Unenable of password textField
+- (void)switchChanged
+{
+    SK8GameNewPasswordCell * passwordCell = (SK8GameNewPasswordCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    if (!passwordCell.switchPasswordEnable.on) {
+        passwordCell.backgroundColor = [UIColor lightGrayColor];
+        
+    }else{
+        passwordCell.backgroundColor = [UIColor whiteColor];
+    }
+    passwordCell.textFieldPassword.enabled = passwordCell.switchPasswordEnable.on;
+}
+
 
 #pragma mark - Table view data source
 
@@ -61,18 +89,18 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return [self.cellArray count];
 }
+
+#pragma mark - Table view delegate
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"cell";
-    
     if (indexPath.row == 0) {
         NSString *CellIdentifier = [self.cellArray objectAtIndex:indexPath.row]; //@"titleCell"
         SK8GameNewTitleCell * titleCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (titleCell == nil) {
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed: @"SK8GameNewTitleCell" owner:self options:nil];
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed: [self.cellNibArray objectAtIndex:indexPath.row] owner:self options:nil];
             titleCell = [nib objectAtIndex:0];
         }
         titleCell.textFieldTitle.delegate = self;
@@ -83,7 +111,7 @@
         NSString *CellIdentifier = [self.cellArray objectAtIndex:indexPath.row]; //@"passwordCell";
         SK8GameNewPasswordCell * passwordCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (passwordCell == nil) {
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed: @"SK8GameNewPasswordCell" owner:self options:nil];
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed: [self.cellNibArray objectAtIndex:indexPath.row] owner:self options:nil];
             passwordCell = [nib objectAtIndex:0];
         }
         
@@ -98,11 +126,10 @@
         NSString *CellIdentifier = [self.cellArray objectAtIndex:indexPath.row]; // @"startAtCell"
         SK8GameNewStartDateCell * startDateCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (startDateCell == nil) {
-            NSArray *nib = [[NSBundle mainBundle] loadNibNamed: @"SK8GameNewStartDateCell" owner:self options:nil];
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed: [self.cellNibArray objectAtIndex:indexPath.row] owner:self options:nil];
             startDateCell = [nib objectAtIndex:0];
         }
         
-        // minimum && maximum dateTime - class init doesn't work at all
         startDateCell.datePickerStartAt.minimumDate = [[ NSDate alloc ] initWithTimeIntervalSinceNow: (NSTimeInterval) 60*30 ];
         startDateCell.datePickerStartAt.maximumDate = [NSDate dateWithTimeIntervalSinceNow: 24*60*60*365];
         
@@ -118,8 +145,45 @@
         
         return startDateCell;
     }
-    
+    if (indexPath.row == 3 || indexPath.row == 4) {
+        NSString *CellIdentifier = [self.cellArray objectAtIndex:indexPath.row]; // @"limitDayCell"
+        SK8GameNewLimitDayCell * limitDayCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (limitDayCell == nil) {
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed: [self.cellNibArray objectAtIndex:indexPath.row] owner:self options:nil];
+            limitDayCell = [nib objectAtIndex:0];
+        }
+
+        limitDayCell.pickerViewForDays.delegate = self;
+        limitDayCell.pickerViewForDays.dataSource = self;
+
+        [limitDayCell.pickerViewForDays selectRow:6 inComponent:0 animated:YES];
+        [self pickerView:limitDayCell.pickerViewForDays didSelectRow:6 inComponent:0];
+        
+        if (indexPath.row == 3) {   // Attack : cell optimizer
+            limitDayCell.labelDefenceOrAttackMention.text = @"Attack Limit Days";
+            if (self.tempSavedAttLimitDay) {
+                limitDayCell.labelLimitDays.text = self.tempSavedAttLimitDay;
+                [limitDayCell.pickerViewForDays selectRow:[self.tempSavedAttLimitDay integerValue]-1 inComponent:0 animated:YES];
+            }
+            self.attLimitDayCell = limitDayCell;
+        }else{                      // Defence : cell optimizer
+            limitDayCell.labelDefenceOrAttackMention.text = @"Defence Limit Days";
+            if (self.tempSavedDefLimitDay) {
+                limitDayCell.labelLimitDays.text = self.tempSavedDefLimitDay;
+                [limitDayCell.pickerViewForDays selectRow:[self.tempSavedDefLimitDay integerValue]-1 inComponent:0 animated:YES];
+            }
+            self.defLimitDayCell = limitDayCell;
+        }
+        
+        return limitDayCell;
+    }
+
+    // Default Cell
+    static NSString *CellIdentifier = @"cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    if (!cell) {
+        cell = [[UITableViewCell alloc]init];
+    }
     
     return cell;
 }
@@ -145,16 +209,26 @@
 
 }
 
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0 || indexPath.row ==1) {
-        return 44;
-    }else if (indexPath.row ==2){
-        if (self.startDateCellHidden) {
+    if (indexPath.row == 2) {
+        if (self.dateTimeCellHidden) {
             return 206;
         }else{
-            return  44;
+            return 44;
+        }
+            
+    }else if (indexPath.row == 3){
+        if (self.attLimitCellHidden) {
+            return 206;
+        }else{
+            return 44;
+        }
+    }else if (indexPath.row == 4){
+        if (self.defLimitCellHidden) {
+            return 206;
+        }else{
+            return 44;
         }
     }
     // Default height of cells
@@ -163,38 +237,84 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 2) {
-        SK8GameNewStartDateCell * startDateCell = (SK8GameNewStartDateCell *)[tableView cellForRowAtIndexPath:indexPath];
-        startDateCell.selected = NO;
-        if (self.startDateCellHidden) {
-            self.startDateCellHidden = NO;
-        }else{
-            self.startDateCellHidden = YES;
-        }
-        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationNone];
+    if (indexPath.row == 2 || indexPath.row == 3 || indexPath.row ==4) {
+        [self changeCellHidden: indexPath.row];
+        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationMiddle];
+        [tableView cellForRowAtIndexPath:indexPath].selected =NO;
+    }else {
+        // Nothing to do
     }
+
 }
 
-- (void)switchChanged
+-(void)changeCellHidden: (int)row
 {
-    SK8GameNewPasswordCell * passwordCell = (SK8GameNewPasswordCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-    if (!passwordCell.switchPasswordEnable.on) {
-        passwordCell.backgroundColor = [UIColor lightGrayColor];
-
-    }else{
-        passwordCell.backgroundColor = [UIColor whiteColor];
+    switch (row) {
+        case 2:
+            if(self.dateTimeCellHidden){
+                self.dateTimeCellHidden = NO;
+            }else{
+                self.dateTimeCellHidden = YES;
+            }
+            break;
+        case 3:
+            if(self.attLimitCellHidden){
+                self.attLimitCellHidden = NO;
+            }else{
+                self.attLimitCellHidden = YES;
+            }
+            break;
+        case 4:
+            if(self.defLimitCellHidden){
+                self.defLimitCellHidden = NO;
+            }else{
+                self.defLimitCellHidden = YES;
+            }
+            break;
+        default:
+            break;
     }
-    passwordCell.textFieldPassword.enabled = passwordCell.switchPasswordEnable.on;
 }
 
+#pragma mark - Picker view data source
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
+}
 
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return self.pickerViewDays.count;
+}
+
+#pragma mark - Picker view delegate
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return [self.pickerViewDays objectAtIndex:row];
+}
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    NSString * stringRow = [NSString stringWithFormat:@"%d", row+1];
+    SK8GameNewLimitDayCell * tempCell;
+    
+    if (pickerView == self.attLimitDayCell.pickerViewForDays) {
+        tempCell = self.attLimitDayCell;
+        self.tempSavedAttLimitDay = stringRow;
+    }else if (pickerView == self.defLimitDayCell.pickerViewForDays ){
+        tempCell = self.defLimitDayCell;
+        self.tempSavedDefLimitDay = stringRow;
+    }
+    tempCell.labelLimitDays.text = stringRow;
+}
+
+#pragma mark - textField delegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
     return YES;
 }
 
-
+#pragma mark - IBAction Clicked bar Button item
 - (IBAction)ClickedBarBtnLeftCancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

@@ -182,16 +182,17 @@
 		9F26F2CA1877BFAA00187C06 /* SkategameForAll */ = {
 			isa = PBXGroup;
 			children = (
+				9F26F2D61877BFAA00187C06 /* Main.storyboard */,
 				9F26F2D31877BFAA00187C06 /* AppDelegate.h */,
 				9F26F2D41877BFAA00187C06 /* AppDelegate.m */,
 				9FC1426018966BDF0051E97C /* SocialLoginPage.xib */,
-				9F26F2D61877BFAA00187C06 /* Main.storyboard */,
-				9FDA32DE188A807A009AE0AF /* SK8GameListDetail */,
-				9FDA32DF188A808D009AE0AF /* SK8GameList */,
 				9F26F2D91877BFAA00187C06 /* ViewController.h */,
 				9F26F2DA1877BFAA00187C06 /* ViewController.m */,
 				9F26F55618786C1D00187C06 /* SideBarViewController.h */,
 				9F26F55718786C1D00187C06 /* SideBarViewController.m */,
+				9FC142AD18990A470051E97C /* SK8GameNew */,
+				9FDA32DF188A808D009AE0AF /* SK8GameList */,
+				9FDA32DE188A807A009AE0AF /* SK8GameListDetail */,
 				9F26F2DC1877BFAA00187C06 /* Images.xcassets */,
 				9F26F2CB1877BFAA00187C06 /* Supporting Files */,
 			);
@@ -302,7 +303,6 @@
 				9FDA32D3188A68A0009AE0AF /* SK8GameListCell.m */,
 				9F26F567187913EB00187C06 /* SK8GameListViewController.h */,
 				9F26F568187913EB00187C06 /* SK8GameListViewController.m */,
-				9FC142AD18990A470051E97C /* SK8GameNew */,
 			);
 			name = SK8GameList;
 			sourceTree = "<group>";

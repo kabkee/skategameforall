@@ -10,5 +10,6 @@
 
 @interface SK8GameNewTitleCell : UITableViewCell
 
+@property (strong, nonatomic) IBOutlet UILabel *labelTitle;
 @property (strong, nonatomic) IBOutlet UITextField *textFieldTitle;
 @end

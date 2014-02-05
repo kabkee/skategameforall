@@ -20,23 +20,29 @@
 @property (strong, nonatomic) SK8GameNewStartDateCell * startDateCell;
 @property (strong, nonatomic) SK8GameNewLimitDayCell * attLimitDayCell;
 @property (strong, nonatomic) SK8GameNewLimitDayCell * defLimitDayCell;
+@property (strong, nonatomic) UITextField * textFieldTitle;
+@property (strong, nonatomic) UITextField * textFieldPassword;
+@property (strong, nonatomic) UILabel * labelTitle;
+@property (strong, nonatomic) UILabel * labelPassword;
 @property NSDate * tempSavedDateTime;
 @property NSString * tempSavedAttLimitDay;
 @property NSString * tempSavedDefLimitDay;
 @property NSArray * cellArray;
 @property NSArray * cellNibArray;
 @property NSMutableArray * pickerViewDays;
-
-@property BOOL dateTimeCellHidden;
-@property BOOL attLimitCellHidden;
-@property BOOL defLimitCellHidden;
-
+@property NSDictionary * goodForDone;
+@property int lastSelectedRow;
 
 @end
 
 @implementation SK8GameNewTableViewController
 @synthesize barBtnLeftCancel, barBtnRightDone;
 
+static NSString * kTextFieldTitleValueChanged = @"textFieldTitleValueChange";
+static NSString * kTextFieldPasswordEnabled = @"textFieldPasswordEnabled";
+
+static NSString * kGoodForDoneTextFieldTitle = @"textFieldTitle";
+static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -58,7 +64,21 @@
     for (int i =0; i< 14; i++) {
         [self.pickerViewDays addObject:[NSString stringWithFormat:@"%d", i+1]];
     }
+    
+    self.goodForDone = @{
+                         kGoodForDoneTextFieldTitle: @false,
+                         kGoodForDoneTextFieldPassword: @false
+                         };
+    
+//    [self.textFieldTitle addObserver:self forKeyPath:kTextFieldTitleValueChanged options:NSKeyValueObservingOptionNew context:NULL];
+//    [self.textFieldPassword addObserver:self forKeyPath:kTextFieldPasswordEnabled options:NSKeyValueObservingOptionNew context:NULL];
 
+    self.textFieldTitle = [[UITextField alloc] init];
+    self.textFieldPassword = [[UITextField alloc] init];
+    
+    [self.textFieldTitle addTarget:self action:@selector(textFieldValueChanged:) forControlEvents:UIControlEventEditingChanged];
+    [self.textFieldPassword addTarget:self action:@selector(textFieldValueChanged:) forControlEvents:UIControlEventEditingChanged];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,7 +93,7 @@
     SK8GameNewPasswordCell * passwordCell = (SK8GameNewPasswordCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
     if (!passwordCell.switchPasswordEnable.on) {
         passwordCell.backgroundColor = [UIColor lightGrayColor];
-        
+        passwordCell.textFieldPassword.text = Nil;
     }else{
         passwordCell.backgroundColor = [UIColor whiteColor];
     }
@@ -105,7 +125,10 @@
             titleCell = [nib objectAtIndex:0];
         }
         titleCell.textFieldTitle.delegate = self;
+        [titleCell.textFieldTitle addTarget:self action:@selector(textFieldValueChanged:) forControlEvents:UIControlEventEditingChanged];
         
+        self.textFieldTitle = titleCell.textFieldTitle;
+        self.labelTitle = titleCell.labelTitle;
         return titleCell;
     }
     if (indexPath.row == 1) {
@@ -119,7 +142,8 @@
         passwordCell.textFieldPassword.delegate = self;
         [passwordCell.switchPasswordEnable addTarget:self action:@selector(switchChanged) forControlEvents:UIControlEventTouchUpInside];
         passwordCell.backgroundColor = [UIColor lightGrayColor];
-        
+        self.textFieldPassword = passwordCell.textFieldPassword;
+        self.labelPassword = passwordCell.labelPassword;
         return passwordCell;
         
     }
@@ -185,7 +209,7 @@
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed: [self.cellNibArray objectAtIndex:indexPath.row] owner:self options:nil];
             autoAttCell = [nib objectAtIndex:0];
         }
-
+        return autoAttCell;
     }
     // Default Cell
     static NSString *CellIdentifier = @"cell";
@@ -220,69 +244,37 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 2) {
-        if (self.dateTimeCellHidden) {
-            return 206;
-        }else{
-            return 44;
-        }
-            
-    }else if (indexPath.row == 3){
-        if (self.attLimitCellHidden) {
-            return 206;
-        }else{
-            return 44;
-        }
-    }else if (indexPath.row == 4){
-        if (self.defLimitCellHidden) {
-            return 206;
-        }else{
-            return 44;
-        }
+    if (self.lastSelectedRow == indexPath.row && (indexPath.row==2 || indexPath.row==3 || indexPath.row==4)) {
+        return 206;
+    }else{
+        return 44;
     }
-    // Default height of cells
-    return  44;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 2 || indexPath.row == 3 || indexPath.row ==4) {
-        [self changeCellHidden: indexPath.row];
-        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationMiddle];
-        [tableView cellForRowAtIndexPath:indexPath].selected =NO;
-    }else {
-        // Nothing to do
+    if (indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4) {
+        // User tap expanded row
+        if (self.lastSelectedRow == indexPath.row) {
+            self.lastSelectedRow = -1;
+            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            return;
+        }
+        // User tap different row
+        if (self.lastSelectedRow == -1) {
+            NSIndexPath * prevPath = [NSIndexPath indexPathForRow:self.lastSelectedRow inSection:0];
+            self.lastSelectedRow = indexPath.row;
+            [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:prevPath] withRowAnimation:UITableViewRowAnimationFade];
+            return;
+        }
+        // User tap new row
+        self.lastSelectedRow = indexPath.row;
+        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+
     }
 
-}
-
--(void)changeCellHidden: (int)row
-{
-    switch (row) {
-        case 2:
-            if(self.dateTimeCellHidden){
-                self.dateTimeCellHidden = NO;
-            }else{
-                self.dateTimeCellHidden = YES;
-            }
-            break;
-        case 3:
-            if(self.attLimitCellHidden){
-                self.attLimitCellHidden = NO;
-            }else{
-                self.attLimitCellHidden = YES;
-            }
-            break;
-        case 4:
-            if(self.defLimitCellHidden){
-                self.defLimitCellHidden = NO;
-            }else{
-                self.defLimitCellHidden = YES;
-            }
-            break;
-        default:
-            break;
-    }
+    [self.textFieldPassword resignFirstResponder];
+    [self.textFieldTitle resignFirstResponder];
 }
 
 #pragma mark - Picker view data source
@@ -323,12 +315,82 @@
     return YES;
 }
 
+
 #pragma mark - IBAction Clicked bar Button item
 - (IBAction)ClickedBarBtnLeftCancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)ClickedBarBtnRightDone:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    NSString * msg;
+    
+    if([self.goodForDone[kGoodForDoneTextFieldTitle] isEqual:@false] && [self.goodForDone[kGoodForDoneTextFieldPassword] isEqual:@false]){
+        msg = @"Fill the Title and Password";
+    }else if ([self.goodForDone[kGoodForDoneTextFieldTitle] isEqual:@false]) {
+        msg = @"Fill the Title";
+    }else if ([self.goodForDone[kGoodForDoneTextFieldPassword] isEqual:@false]){
+        msg = @"Fill the Password";
+    }else{
+        msg = @"non of the cases";
+    }
+    if (msg) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Not Enough" message:msg delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }else{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    
+
 }
+
+#pragma mark - Observer act when recieving changed data
+//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+//{
+//    NSLog(@"Value changed");
+//    if ([keyPath isEqualToString:kTextFieldTitleValueChanged]) {
+//        NSLog(@"Title Value changed");
+//
+//        if ([self.textFieldTitle.text isEqualToString:@""] || self.textFieldTitle.text == NULL) {
+//            self.labelTitle.textColor = [UIColor redColor];
+//            [self.goodForDone setValue:@false forKey:kGoodForDoneTextFieldTitle];
+//            
+//        }else{
+//            self.labelTitle.textColor = [UIColor blackColor];
+//            [self.goodForDone setValue:@true forKey:kGoodForDoneTextFieldTitle];
+//        }
+//    }else if ([keyPath isEqualToString:kTextFieldPasswordEnabled]){
+//        if ( self.textFieldPassword.enabled && ([self.textFieldPassword.text isEqualToString:@""] || self.textFieldPassword.text == NULL)) {
+//            self.labelPassword.textColor = [UIColor redColor];
+//            [self.goodForDone setValue:@false forKey:kGoodForDoneTextFieldPassword];
+//        }else{
+//            self.labelPassword.textColor = [UIColor blackColor];
+//            [self.goodForDone setValue:@true forKey:kGoodForDoneTextFieldPassword];
+//        }
+//    }
+//}
+
+- (void)textFieldValueChanged: (UITextField *)sender
+{
+        NSLog(@"Value changed");
+    if (sender == self.textFieldTitle) {
+        NSLog(@"Title Value changed");
+        if ([self.textFieldTitle.text isEqualToString:@""] || self.textFieldTitle.text == NULL) {
+            self.labelTitle.textColor = [UIColor redColor];
+            [self.goodForDone setValue:@false forKey:kGoodForDoneTextFieldTitle];
+        }else{
+            self.labelTitle.textColor = [UIColor blackColor];
+            [self.goodForDone setValue:@true forKey:kGoodForDoneTextFieldTitle];
+        }
+
+    }else if (sender == self.textFieldPassword){
+        if ( self.textFieldPassword.enabled && ([self.textFieldPassword.text isEqualToString:@""] || self.textFieldPassword.text == NULL)) {
+            self.labelPassword.textColor = [UIColor redColor];
+            [self.goodForDone setValue:@false forKey:kGoodForDoneTextFieldPassword];
+        }else{
+            self.labelPassword.textColor = [UIColor blackColor];
+            [self.goodForDone setValue:@true forKey:kGoodForDoneTextFieldPassword];
+        }
+    }
+}
+
 @end

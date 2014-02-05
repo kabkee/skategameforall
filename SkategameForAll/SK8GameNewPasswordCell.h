@@ -10,6 +10,7 @@
 
 @interface SK8GameNewPasswordCell : UITableViewCell
 
+@property (strong, nonatomic) IBOutlet UILabel *labelPassword;
 @property (strong, nonatomic) IBOutlet UITextField *textFieldPassword;
 @property (strong, nonatomic) IBOutlet UISwitch *switchPasswordEnable;
 @end

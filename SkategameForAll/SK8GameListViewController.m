@@ -60,7 +60,7 @@
     
     //data source
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    self.DicGameList = appDelegate.tempGameList;
+    self.DicGameList = appDelegate.gameRoomList;
     
     self.TableViewGamelist.dataSource = self;
     self.TableViewGamelist.delegate = self;

@@ -10,4 +10,5 @@
 
 @interface SK8GameNewAutoAttackOrderCell : UITableViewCell
 
+@property (strong, nonatomic) IBOutlet UISwitch *switchAutoAttackOrder;
 @end

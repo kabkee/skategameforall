@@ -9,15 +9,17 @@
 #import "AppDelegate.h"
 
 @implementation AppDelegate
-@synthesize tempGameList;
+@synthesize gameRoomList;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    
     // if Online Mode = YES, if NOT = NO;
     self.onlineOn = NO;
     
-    if(!tempGameList){
-
+    if(!gameRoomList){
+        gameRoomList = [[NSMutableDictionary alloc]init];
         NSDictionary *jsonInfo = @{@"room1":
                                        @{
                                            //roomDetail
@@ -127,12 +129,12 @@
         NSData * jsonData;
         NSError * error;
         
-        if (self.onlineOn) {
+        if (self.onlineOn != NO) {
             NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:5000/getRoom"]];
             jsonData = [NSData dataWithContentsOfURL:url];
             if (!jsonData) {
                 // Just for insurance
-                tempGameList = @{@"": @""};
+                [gameRoomList setObject:@"" forKey:@""];
                 return YES;
             }
         }else{
@@ -144,11 +146,28 @@
                 // Nothing to do
             }
         }
-        tempGameList= [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
+        [gameRoomList setDictionary:[NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error]];
+//        gameRoomList= [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
         
     }
     return YES;
 }
+
+- (void)addData:(NSDictionary *)data
+{
+    [gameRoomList setObject:data[@"value"] forKey:data[@"key"]];
+}
+
+- (void)updateData:(NSDictionary *)data
+{
+    [gameRoomList setValue:data[@"value"] forKey:data[@"key"]];
+}
+- (void)removeData:(NSString *)key
+{
+    [gameRoomList removeObjectForKey:key];
+}
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

@@ -11,10 +11,15 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property NSDictionary * tempGameList;
-
+@property NSMutableDictionary * gameRoomList;
 
 // Only for Test, For production please delete all the below;
 @property BOOL onlineOn;
+
+- (void)addData:(NSDictionary *)data;
+- (void)updateData:(NSDictionary *)data;
+- (void)removeData:(NSString *)key;
+
+
 
 @end

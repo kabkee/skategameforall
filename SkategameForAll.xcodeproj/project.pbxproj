@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4362BF3018A3D3AA0096325F /* SK8GameNewMaxPplCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4362BF2F18A3D3AA0096325F /* SK8GameNewMaxPplCell.xib */; };
+		4362BF3618A3D4AA0096325F /* SK8GameNewMaxPplCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4362BF3518A3D4AA0096325F /* SK8GameNewMaxPplCell.m */; };
 		9F26F2C51877BFAA00187C06 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F26F2C41877BFAA00187C06 /* Foundation.framework */; };
 		9F26F2C71877BFAA00187C06 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F26F2C61877BFAA00187C06 /* CoreGraphics.framework */; };
 		9F26F2C91877BFAA00187C06 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F26F2C81877BFAA00187C06 /* UIKit.framework */; };
@@ -62,6 +64,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4362BF2F18A3D3AA0096325F /* SK8GameNewMaxPplCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SK8GameNewMaxPplCell.xib; sourceTree = "<group>"; };
+		4362BF3418A3D4AA0096325F /* SK8GameNewMaxPplCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SK8GameNewMaxPplCell.h; sourceTree = "<group>"; };
+		4362BF3518A3D4AA0096325F /* SK8GameNewMaxPplCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SK8GameNewMaxPplCell.m; sourceTree = "<group>"; };
 		9F26F2C11877BFAA00187C06 /* SkategameForAll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkategameForAll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F26F2C41877BFAA00187C06 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9F26F2C61877BFAA00187C06 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -280,6 +285,9 @@
 				9FE5ED0B189B87430064DA96 /* SK8GameNewAutoAttackOrderCell.h */,
 				9FE5ED0C189B87430064DA96 /* SK8GameNewAutoAttackOrderCell.m */,
 				9FE5ED10189B875C0064DA96 /* SK8GameNewAutoAttackOrderCell.xib */,
+				4362BF3418A3D4AA0096325F /* SK8GameNewMaxPplCell.h */,
+				4362BF3518A3D4AA0096325F /* SK8GameNewMaxPplCell.m */,
+				4362BF2F18A3D3AA0096325F /* SK8GameNewMaxPplCell.xib */,
 			);
 			name = customCells;
 			sourceTree = "<group>";
@@ -409,6 +417,7 @@
 				9FDA32E3188A8229009AE0AF /* ended.png in Resources */,
 				9F26F2CF1877BFAA00187C06 /* InfoPlist.strings in Resources */,
 				9F26F563187903CE00187C06 /* list-circle.png in Resources */,
+				4362BF3018A3D3AA0096325F /* SK8GameNewMaxPplCell.xib in Resources */,
 				9F3FF630189B2746000529E8 /* SK8GameNewLimitDayCell.xib in Resources */,
 				9FDA32E4188A8229009AE0AF /* paused.png in Resources */,
 				9FC142B11899EC3D0051E97C /* SK8GameNewPasswordCell.xib in Resources */,
@@ -442,6 +451,7 @@
 				9FE5ED0D189B87430064DA96 /* SK8GameNewAutoAttackOrderCell.m in Sources */,
 				9FDA32D4188A68A0009AE0AF /* SK8GameListCell.m in Sources */,
 				9FC142B81899EEF40051E97C /* SK8GameNewPasswordCell.m in Sources */,
+				4362BF3618A3D4AA0096325F /* SK8GameNewMaxPplCell.m in Sources */,
 				9F3FF633189B275E000529E8 /* SK8GameNewLimitDayCell.m in Sources */,
 				9FDA32DA188A7FF0009AE0AF /* SK8GameListDetailViewController.m in Sources */,
 				9FC142B41899EEAD0051E97C /* SK8GameNewTitleCell.m in Sources */,

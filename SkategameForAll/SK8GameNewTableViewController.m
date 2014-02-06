@@ -15,22 +15,26 @@
 #import "SK8GameNewStartDateCell.h"
 #import "SK8GameNewLimitDayCell.h"
 #import "SK8GameNewAutoAttackOrderCell.h"
+#import "SK8GameNewMaxPplCell.h"
+#import "AppDelegate.h"
 
 @interface SK8GameNewTableViewController ()
+@property (strong, nonatomic) SK8GameNewTitleCell * titleCell;
+@property (strong, nonatomic) SK8GameNewPasswordCell * passwordCell;
 @property (strong, nonatomic) SK8GameNewStartDateCell * startDateCell;
+@property (strong, nonatomic) SK8GameNewMaxPplCell * maxPplCell;
 @property (strong, nonatomic) SK8GameNewLimitDayCell * attLimitDayCell;
 @property (strong, nonatomic) SK8GameNewLimitDayCell * defLimitDayCell;
-@property (strong, nonatomic) UITextField * textFieldTitle;
-@property (strong, nonatomic) UITextField * textFieldPassword;
-@property (strong, nonatomic) UILabel * labelTitle;
-@property (strong, nonatomic) UILabel * labelPassword;
-@property NSDate * tempSavedDateTime;
-@property NSString * tempSavedAttLimitDay;
-@property NSString * tempSavedDefLimitDay;
-@property NSArray * cellArray;
-@property NSArray * cellNibArray;
-@property NSMutableArray * pickerViewDays;
-@property NSDictionary * goodForDone;
+@property (strong, nonatomic) SK8GameNewAutoAttackOrderCell * autoAttackOrderCell;
+@property (strong, nonatomic) NSDate * tempSavedDateTime;
+@property (strong, nonatomic) NSString * tempSavedMaxPpl;
+@property (strong, nonatomic) NSString * tempSavedAttLimitDay;
+@property (strong, nonatomic) NSString * tempSavedDefLimitDay;
+@property (strong, nonatomic) NSArray * cellArray;
+@property (strong, nonatomic) NSArray * cellNibArray;
+@property (strong, nonatomic) NSMutableArray * pickerViewDays;
+@property (strong, nonatomic) NSMutableArray * pickerViewPpl;
+@property (strong, nonatomic) NSMutableDictionary * goodForDone;
 @property int lastSelectedRow;
 
 @end
@@ -57,28 +61,23 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
 {
     [super viewDidLoad];
     
-    self.cellArray = [[NSArray alloc]initWithObjects:@"titleCell", @"passwordCell", @"startAtCell", @"limitDayCell", @"limitDayCell", @"autoAttCell", nil];
-    self.cellNibArray = [[NSArray alloc]initWithObjects:@"SK8GameNewTitleCell", @"SK8GameNewPasswordCell", @"SK8GameNewStartDateCell", @"SK8GameNewLimitDayCell", @"SK8GameNewLimitDayCell", @"SK8GameNewAutoAttackOrderCell", nil];
+    self.cellArray = [[NSArray alloc]initWithObjects:@"titleCell", @"passwordCell", @"startAtCell", @"maxPplCell" @"limitDayCell", @"limitDayCell", @"autoAttCell", nil];
+    self.cellNibArray = [[NSArray alloc]initWithObjects:@"SK8GameNewTitleCell", @"SK8GameNewPasswordCell", @"SK8GameNewStartDateCell", @"SK8GameNewMaxPplCell", @"SK8GameNewLimitDayCell", @"SK8GameNewLimitDayCell", @"SK8GameNewAutoAttackOrderCell", nil];
 
     self.pickerViewDays = [[NSMutableArray alloc]init];
     for (int i =0; i< 14; i++) {
         [self.pickerViewDays addObject:[NSString stringWithFormat:@"%d", i+1]];
     }
+    self.pickerViewPpl = [[NSMutableArray alloc]init];
+    for (int i =0; i< 5; i++) {
+        [self.pickerViewPpl addObject:[NSString stringWithFormat:@"%d", i+1]];
+    }
     
-    self.goodForDone = @{
-                         kGoodForDoneTextFieldTitle: @false,
-                         kGoodForDoneTextFieldPassword: @false
-                         };
-    
-//    [self.textFieldTitle addObserver:self forKeyPath:kTextFieldTitleValueChanged options:NSKeyValueObservingOptionNew context:NULL];
-//    [self.textFieldPassword addObserver:self forKeyPath:kTextFieldPasswordEnabled options:NSKeyValueObservingOptionNew context:NULL];
-
-    self.textFieldTitle = [[UITextField alloc] init];
-    self.textFieldPassword = [[UITextField alloc] init];
-    
-    [self.textFieldTitle addTarget:self action:@selector(textFieldValueChanged:) forControlEvents:UIControlEventEditingChanged];
-    [self.textFieldPassword addTarget:self action:@selector(textFieldValueChanged:) forControlEvents:UIControlEventEditingChanged];
-    
+    if (!self.goodForDone) {
+        self.goodForDone = [[NSMutableDictionary alloc] init];
+    }
+    [self.goodForDone setObject:@false forKey:kGoodForDoneTextFieldTitle];
+    [self.goodForDone setObject:@false forKey:kGoodForDoneTextFieldPassword];
 }
 
 - (void)didReceiveMemoryWarning
@@ -88,21 +87,26 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
 }
 
 #pragma mark - Switch method to Enable or Unenable of password textField
-- (void)switchChanged
+- (void)passwordCellSwitchChanged
 {
     SK8GameNewPasswordCell * passwordCell = (SK8GameNewPasswordCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
     if (!passwordCell.switchPasswordEnable.on) {
         passwordCell.backgroundColor = [UIColor lightGrayColor];
         passwordCell.textFieldPassword.text = Nil;
+        passwordCell.labelPassword.textColor = [UIColor blackColor];
+        [self.goodForDone setObject:@true forKey:kGoodForDoneTextFieldPassword];
     }else{
         passwordCell.backgroundColor = [UIColor whiteColor];
+        if ([passwordCell.textFieldPassword.text isEqualToString:@""] || passwordCell.textFieldPassword.text == NULL) {
+            passwordCell.labelPassword.textColor = [UIColor redColor];
+        }
+
     }
     passwordCell.textFieldPassword.enabled = passwordCell.switchPasswordEnable.on;
+
 }
 
-
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -114,51 +118,50 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
 }
 
 #pragma mark - Table view delegate
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSString *CellIdentifier;
     if (indexPath.row == 0) {
-        NSString *CellIdentifier = [self.cellArray objectAtIndex:indexPath.row]; //@"titleCell"
-        SK8GameNewTitleCell * titleCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (titleCell == nil) {
+        CellIdentifier = [self.cellArray objectAtIndex:indexPath.row]; //@"titleCell"
+        self.titleCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (self.titleCell == nil) {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed: [self.cellNibArray objectAtIndex:indexPath.row] owner:self options:nil];
-            titleCell = [nib objectAtIndex:0];
+            self.titleCell = [nib objectAtIndex:0];
         }
-        titleCell.textFieldTitle.delegate = self;
-        [titleCell.textFieldTitle addTarget:self action:@selector(textFieldValueChanged:) forControlEvents:UIControlEventEditingChanged];
+        self.titleCell.textFieldTitle.delegate = self;
+        [self.titleCell.textFieldTitle addTarget:self action:@selector(textFieldValueChanged:) forControlEvents:UIControlEventEditingChanged];
+        self.titleCell.labelTitle.textColor = [UIColor redColor];
         
-        self.textFieldTitle = titleCell.textFieldTitle;
-        self.labelTitle = titleCell.labelTitle;
-        return titleCell;
+        return self.titleCell;
     }
     if (indexPath.row == 1) {
-        NSString *CellIdentifier = [self.cellArray objectAtIndex:indexPath.row]; //@"passwordCell";
-        SK8GameNewPasswordCell * passwordCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (passwordCell == nil) {
+        CellIdentifier = [self.cellArray objectAtIndex:indexPath.row]; //@"passwordCell";
+        self.passwordCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (self.passwordCell == nil) {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed: [self.cellNibArray objectAtIndex:indexPath.row] owner:self options:nil];
-            passwordCell = [nib objectAtIndex:0];
+            self.passwordCell = [nib objectAtIndex:0];
         }
         
-        passwordCell.textFieldPassword.delegate = self;
-        [passwordCell.switchPasswordEnable addTarget:self action:@selector(switchChanged) forControlEvents:UIControlEventTouchUpInside];
-        passwordCell.backgroundColor = [UIColor lightGrayColor];
-        self.textFieldPassword = passwordCell.textFieldPassword;
-        self.labelPassword = passwordCell.labelPassword;
-        return passwordCell;
+        self.passwordCell.textFieldPassword.delegate = self;
+        [self.passwordCell.switchPasswordEnable addTarget:self action:@selector(passwordCellSwitchChanged) forControlEvents:UIControlEventTouchUpInside];
+        self.passwordCell.backgroundColor = [UIColor lightGrayColor];
+        
+        [self.passwordCell.textFieldPassword addTarget:self action:@selector(textFieldValueChanged:) forControlEvents:UIControlEventEditingChanged];
+
+        return self.passwordCell;
         
     }
     if (indexPath.row == 2) {
-        NSString *CellIdentifier = [self.cellArray objectAtIndex:indexPath.row]; // @"startAtCell"
-        SK8GameNewStartDateCell * startDateCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (startDateCell == nil) {
+        CellIdentifier = [self.cellArray objectAtIndex:indexPath.row]; // @"startAtCell"
+        self.startDateCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (self.startDateCell == nil) {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed: [self.cellNibArray objectAtIndex:indexPath.row] owner:self options:nil];
-            startDateCell = [nib objectAtIndex:0];
+            self.startDateCell = [nib objectAtIndex:0];
         }
         
-        startDateCell.datePickerStartAt.minimumDate = [[ NSDate alloc ] initWithTimeIntervalSinceNow: (NSTimeInterval) 60*30 ];
-        startDateCell.datePickerStartAt.maximumDate = [NSDate dateWithTimeIntervalSinceNow: 24*60*60*365];
+        self.startDateCell.datePickerStartAt.minimumDate = [[ NSDate alloc ] initWithTimeIntervalSinceNow: (NSTimeInterval) 60*30 ];
+        self.startDateCell.datePickerStartAt.maximumDate = [NSDate dateWithTimeIntervalSinceNow: 24*60*60*365];
         
-        self.startDateCell = startDateCell;
         if (self.tempSavedDateTime) {
             self.startDateCell.labelStartAt.text = [self changeNSDateToString:self.tempSavedDateTime];
             self.startDateCell.datePickerStartAt.date = self.tempSavedDateTime;
@@ -168,10 +171,29 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
         
         [self.startDateCell.datePickerStartAt addTarget:self action:@selector(dateTimePickedAndValueChanged)  forControlEvents:UIControlEventValueChanged];
         
-        return startDateCell;
+        return self.startDateCell;
     }
-    if (indexPath.row == 3 || indexPath.row == 4) {
-        NSString *CellIdentifier = [self.cellArray objectAtIndex:indexPath.row]; // @"limitDayCell"
+    if (indexPath.row == 3) {
+        CellIdentifier = [self.cellArray objectAtIndex:indexPath.row]; // @"maxPplCell"
+        self.maxPplCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (self.maxPplCell == nil) {
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed: [self.cellNibArray objectAtIndex:indexPath.row] owner:self options:nil];
+            self.maxPplCell= [nib objectAtIndex:0];
+        }
+        
+        self.maxPplCell.pickerViewForPpl.delegate = self;
+        self.maxPplCell.pickerViewForPpl.dataSource = self;
+        
+        [self.maxPplCell.pickerViewForPpl selectRow:4 inComponent:0 animated:YES];
+        
+        if (self.tempSavedMaxPpl) {
+            self.maxPplCell.labelMaxPpl.text = self.tempSavedMaxPpl;
+            [self.maxPplCell.pickerViewForPpl selectRow:[self.tempSavedMaxPpl integerValue]-1 inComponent:0 animated:YES];
+        }
+        return self.maxPplCell;
+    }
+    if (indexPath.row == 4 || indexPath.row == 5) {
+        CellIdentifier = [self.cellArray objectAtIndex:indexPath.row]; // @"limitDayCell"
         SK8GameNewLimitDayCell * limitDayCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (limitDayCell == nil) {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed: [self.cellNibArray objectAtIndex:indexPath.row] owner:self options:nil];
@@ -184,7 +206,7 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
         [limitDayCell.pickerViewForDays selectRow:6 inComponent:0 animated:YES];
         [self pickerView:limitDayCell.pickerViewForDays didSelectRow:6 inComponent:0];
         
-        if (indexPath.row == 3) {   // Attack : cell optimizer
+        if (indexPath.row == 4) {   // Attack : cell optimizer
             limitDayCell.labelDefenceOrAttackMention.text = @"Attack Limit Days";
             if (self.tempSavedAttLimitDay) {
                 limitDayCell.labelLimitDays.text = self.tempSavedAttLimitDay;
@@ -202,17 +224,17 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
 
         return limitDayCell;
     }
-    if (indexPath.row == 5) {
-        NSString *CellIdentifier = [self.cellArray objectAtIndex:indexPath.row]; // @"autoAttCell"
-        SK8GameNewAutoAttackOrderCell * autoAttCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-        if (autoAttCell == nil) {
+    if (indexPath.row == 6) {
+        CellIdentifier = [self.cellArray objectAtIndex:indexPath.row]; // @"autoAttCell"
+        self.autoAttackOrderCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (self.autoAttackOrderCell == nil) {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed: [self.cellNibArray objectAtIndex:indexPath.row] owner:self options:nil];
-            autoAttCell = [nib objectAtIndex:0];
+            self.autoAttackOrderCell = [nib objectAtIndex:0];
         }
-        return autoAttCell;
+        return self.autoAttackOrderCell;
     }
     // Default Cell
-    static NSString *CellIdentifier = @"cell";
+    CellIdentifier = @"cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     if (!cell) {
         cell = [[UITableViewCell alloc]init];
@@ -238,13 +260,11 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
     }else{
         // Nothing to do
     }
-    
-
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.lastSelectedRow == indexPath.row && (indexPath.row==2 || indexPath.row==3 || indexPath.row==4)) {
+    if (self.lastSelectedRow == indexPath.row && (indexPath.row==2 || indexPath.row==3 || indexPath.row==4 || indexPath.row==5)) {
         return 206;
     }else{
         return 44;
@@ -253,7 +273,7 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4) {
+    if (indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4 || indexPath.row == 5 ) {
         // User tap expanded row
         if (self.lastSelectedRow == indexPath.row) {
             self.lastSelectedRow = -1;
@@ -273,8 +293,8 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
 
     }
 
-    [self.textFieldPassword resignFirstResponder];
-    [self.textFieldTitle resignFirstResponder];
+    [self.passwordCell.textFieldPassword resignFirstResponder];
+    [self.titleCell.textFieldTitle resignFirstResponder];
 }
 
 #pragma mark - Picker view data source
@@ -285,27 +305,39 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
+    if (pickerView == self.maxPplCell.pickerViewForPpl) {
+        return self.pickerViewPpl.count;
+    }
     return self.pickerViewDays.count;
 }
 
 #pragma mark - Picker view delegate
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
+    if (pickerView == self.maxPplCell.pickerViewForPpl) {
+        return [self.pickerViewPpl objectAtIndex:row];
+    }
     return [self.pickerViewDays objectAtIndex:row];
 }
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     NSString * stringRow = [NSString stringWithFormat:@"%d", row+1];
     SK8GameNewLimitDayCell * tempCell;
-    
-    if (pickerView == self.attLimitDayCell.pickerViewForDays) {
-        tempCell = self.attLimitDayCell;
-        self.tempSavedAttLimitDay = stringRow;
-    }else if (pickerView == self.defLimitDayCell.pickerViewForDays ){
-        tempCell = self.defLimitDayCell;
-        self.tempSavedDefLimitDay = stringRow;
+
+    if (pickerView == self.maxPplCell.pickerViewForPpl) {
+        self.tempSavedMaxPpl = stringRow;
+        self.maxPplCell.labelMaxPpl.text = stringRow;
+    }else{
+        if (pickerView == self.attLimitDayCell.pickerViewForDays) {
+            tempCell = self.attLimitDayCell;
+            self.tempSavedAttLimitDay = stringRow;
+        }else if (pickerView == self.defLimitDayCell.pickerViewForDays ){
+            tempCell = self.defLimitDayCell;
+            self.tempSavedDefLimitDay = stringRow;
+        }
+        tempCell.labelLimitDays.text = stringRow;
     }
-    tempCell.labelLimitDays.text = stringRow;
+    
 }
 
 #pragma mark - textField delegate
@@ -315,7 +347,6 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
     return YES;
 }
 
-
 #pragma mark - IBAction Clicked bar Button item
 - (IBAction)ClickedBarBtnLeftCancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -323,72 +354,125 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
 
 - (IBAction)ClickedBarBtnRightDone:(id)sender {
     NSString * msg;
-    
-    if([self.goodForDone[kGoodForDoneTextFieldTitle] isEqual:@false] && [self.goodForDone[kGoodForDoneTextFieldPassword] isEqual:@false]){
+    if([self.goodForDone[kGoodForDoneTextFieldTitle] isEqual:@false] && [self.goodForDone[kGoodForDoneTextFieldPassword] isEqual:@false] && self.passwordCell.textFieldPassword.enabled){
         msg = @"Fill the Title and Password";
-    }else if ([self.goodForDone[kGoodForDoneTextFieldTitle] isEqual:@false]) {
-        msg = @"Fill the Title";
-    }else if ([self.goodForDone[kGoodForDoneTextFieldPassword] isEqual:@false]){
-        msg = @"Fill the Password";
     }else{
-        msg = @"non of the cases";
+        if ([self.goodForDone[kGoodForDoneTextFieldTitle] isEqual:@false]) {
+            msg = @"Fill the Title";
+        }else if(self.passwordCell.textFieldPassword.enabled){
+            msg = @"Fill the Password";
+        }else{
+            msg = NULL;
+        }
     }
     if (msg) {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Not Enough" message:msg delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }else{
+        // Do save all the info of new room
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+
+  @{@"room1":
+        @{
+            //roomDetail
+            @"createDate": @"2014-01-13", //dateTime
+            @"status": @"Playing", // [Ready, Playing, Paused, Ended]
+            @"title": @"Kabkee's room1", //string
+            @"gameStartTime": @"2014-01-15", //dateTime
+            @"maxPpl":@5, // max 5 ppl
+            @"players":@[@"kabkee",@"Gomsun2", @"Minsu"], //array // attOrder
+            @"watchers":@[@"kabkeeWC",@"Gomsun2WC", @"MinsuWC", @"SuminWC", @"DanbeeWC", @"HyojuWC"], // array
+            @"clikingNo":@100, // int
+            @"starred":@[@"kabkeeST",@"Gomsun2ST", @"MinsuST", @"SuminST", @"DanbeeST", @"HyojuST"], // array
+            @"attLimitDay":@7, // int Days
+            @"defLimitDay":@7, // int Days
+            @"orderAttAutomate":@NO, //boolean
+            //gameDetail
+            @"statusOfAtt":@YES, //booean Att=YES, Def=NO
+            @"attacker":@"kabkee",
+            @"defender":@[@"Gomsun2"], // who uploaded def video
+            @"videos":@[
+                    @{@"statusOfAtt": @YES,
+                      @"videoAdd":@"http://urlAtt.com",
+                      @"regTime":@"2014-01-14",
+                      @"title":@"kickflip",
+                      @"player":@"kabkee"},
+                    @{@"statusOfAtt": @NO,
+                      @"videoAdd":@"http://urlDef.com",
+                      @"regTime":@"2014-01-15",
+                      @"title":@"kickflip",
+                      @"player":@"Gomsun2"}
+                    ],
+            @"scores":@{@"kabkee": @2,
+                        @"Gomsun2": @3,
+                        @"Minsu": @5} // S(1), K(2), A(3), T(4), E(5)= over
+            },
+    };
+        
+        static NSString * kRoomDataCreateDate = @"createDate";
+        static NSString * kRoomDataStatus = @"status";
+        static NSString * kRoomDataTitle = @"title";
+        static NSString * kRoomDataGameStartTime = @"gameStartTime";
+        static NSString * kRoomDataMaxPpl = @"maxPpl";
+        static NSString * kRoomDataPlayers = @"players";
+        static NSString * kRoomDataAttLimitDay = @"attLimitDay";
+        static NSString * kRoomDataDefLimitDay = @"defLimitDay";
+        static NSString * kRoomDataOrderAttAutomate = @"orderAttAutomate";
+        static NSString * kRoomDataWatchers = @"watchers";
+        static NSString * kRoomDataClickingNo = @"clickingNo";
+        static NSString * kRoomDataStarred = @"starred";
+        
+        NSDictionary *newRoom = @{
+                                  @"key": [NSString stringWithFormat:@"%@+%@+%@",self.startDateCell.labelStartAt.text, self.titleCell.textFieldTitle.text, [NSDate new]],
+                                  @"value":
+                                      @{ kRoomDataCreateDate: [NSString stringWithFormat:@"%@",[NSDate new]],
+                                         kRoomDataStatus: @"Ready",
+                                         kRoomDataTitle: self.titleCell.textFieldTitle.text,
+                                         kRoomDataGameStartTime: self.startDateCell.labelStartAt.text,
+                                         kRoomDataMaxPpl: self.maxPplCell.labelMaxPpl.text,
+                                         kRoomDataPlayers: @[
+                                                    // SOCIAL NETWORK ID
+                                                 ],
+                                         kRoomDataAttLimitDay: self.attLimitDayCell.labelLimitDays.text,
+                                         kRoomDataDefLimitDay: self.defLimitDayCell.labelLimitDays.text,
+                                         kRoomDataOrderAttAutomate: [self autoAttackOrderCellSwitchOnToNSBool]
+                                        }
+                                  };
+    
+    
+        [appDelegate addData:newRoom];
+    
         [self dismissViewControllerAnimated:YES completion:nil];
     }
-    
+}
 
+- (id)autoAttackOrderCellSwitchOnToNSBool{
+    if (self.autoAttackOrderCell.switchAutoAttackOrder.on) {
+        return @true;
+    }
+    return @false;
 }
 
 #pragma mark - Observer act when recieving changed data
-//- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-//{
-//    NSLog(@"Value changed");
-//    if ([keyPath isEqualToString:kTextFieldTitleValueChanged]) {
-//        NSLog(@"Title Value changed");
-//
-//        if ([self.textFieldTitle.text isEqualToString:@""] || self.textFieldTitle.text == NULL) {
-//            self.labelTitle.textColor = [UIColor redColor];
-//            [self.goodForDone setValue:@false forKey:kGoodForDoneTextFieldTitle];
-//            
-//        }else{
-//            self.labelTitle.textColor = [UIColor blackColor];
-//            [self.goodForDone setValue:@true forKey:kGoodForDoneTextFieldTitle];
-//        }
-//    }else if ([keyPath isEqualToString:kTextFieldPasswordEnabled]){
-//        if ( self.textFieldPassword.enabled && ([self.textFieldPassword.text isEqualToString:@""] || self.textFieldPassword.text == NULL)) {
-//            self.labelPassword.textColor = [UIColor redColor];
-//            [self.goodForDone setValue:@false forKey:kGoodForDoneTextFieldPassword];
-//        }else{
-//            self.labelPassword.textColor = [UIColor blackColor];
-//            [self.goodForDone setValue:@true forKey:kGoodForDoneTextFieldPassword];
-//        }
-//    }
-//}
-
 - (void)textFieldValueChanged: (UITextField *)sender
 {
-        NSLog(@"Value changed");
-    if (sender == self.textFieldTitle) {
-        NSLog(@"Title Value changed");
-        if ([self.textFieldTitle.text isEqualToString:@""] || self.textFieldTitle.text == NULL) {
-            self.labelTitle.textColor = [UIColor redColor];
-            [self.goodForDone setValue:@false forKey:kGoodForDoneTextFieldTitle];
+    if (sender == self.titleCell.textFieldTitle) {
+        if ([sender.text isEqualToString:@""] || sender.text == NULL) {
+            self.titleCell.labelTitle.textColor = [UIColor redColor];
+            [self.goodForDone setObject:@false forKey:kGoodForDoneTextFieldTitle];
         }else{
-            self.labelTitle.textColor = [UIColor blackColor];
-            [self.goodForDone setValue:@true forKey:kGoodForDoneTextFieldTitle];
+            self.titleCell.labelTitle.textColor = [UIColor blackColor];
+            [self.goodForDone setObject:@true forKey:kGoodForDoneTextFieldTitle];
         }
 
-    }else if (sender == self.textFieldPassword){
-        if ( self.textFieldPassword.enabled && ([self.textFieldPassword.text isEqualToString:@""] || self.textFieldPassword.text == NULL)) {
-            self.labelPassword.textColor = [UIColor redColor];
-            [self.goodForDone setValue:@false forKey:kGoodForDoneTextFieldPassword];
-        }else{
-            self.labelPassword.textColor = [UIColor blackColor];
-            [self.goodForDone setValue:@true forKey:kGoodForDoneTextFieldPassword];
+    }else if (sender == self.passwordCell.textFieldPassword){
+        if ( self.passwordCell.textFieldPassword.enabled && ([self.passwordCell.textFieldPassword.text isEqualToString:@""] || self.passwordCell.textFieldPassword.text == NULL)) {
+            self.passwordCell.labelPassword.textColor = [UIColor redColor];
+            [self.goodForDone setObject:@false forKey:kGoodForDoneTextFieldPassword];
+        }
+        if( self.passwordCell.textFieldPassword.enabled && ![self.passwordCell.textFieldPassword.text isEqualToString:@""]){
+            self.passwordCell.labelPassword.textColor = [UIColor blackColor];
+            [self.goodForDone setObject:@true forKey:kGoodForDoneTextFieldPassword];
         }
     }
 }

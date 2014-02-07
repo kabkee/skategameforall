@@ -18,6 +18,7 @@
 #import "SK8GameNewMaxPplCell.h"
 #import "AppDelegate.h"
 
+
 @interface SK8GameNewTableViewController ()
 @property (strong, nonatomic) SK8GameNewTitleCell * titleCell;
 @property (strong, nonatomic) SK8GameNewPasswordCell * passwordCell;
@@ -41,6 +42,7 @@
 
 @implementation SK8GameNewTableViewController
 @synthesize barBtnLeftCancel, barBtnRightDone;
+
 
 static NSString * kTextFieldTitleValueChanged = @"textFieldTitleValueChange";
 static NSString * kTextFieldPasswordEnabled = @"textFieldPasswordEnabled";
@@ -420,7 +422,7 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
         static NSString * kRoomDataOrderAttAutomate = @"orderAttAutomate";
         static NSString * kRoomDataWatchers = @"watchers";
         static NSString * kRoomDataClickingNo = @"clickingNo";
-        static NSString * kRoomDataStarred = @"starred";
+         static NSString * kRoomDataStarred = @"starred";
         
         NSDictionary *newRoom = @{
                                   @"key": [NSString stringWithFormat:@"%@+%@+%@",self.startDateCell.labelStartAt.text, self.titleCell.textFieldTitle.text, [NSDate new]],
@@ -441,8 +443,10 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
     
     
         [appDelegate addData:newRoom];
-    
-        [self dismissViewControllerAnimated:YES completion:nil];
+        [self dismissViewControllerAnimated:YES completion:^{
+            [self.delegate didDismissedModalView];
+        }];
+
     }
 }
 
@@ -476,5 +480,6 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
         }
     }
 }
+
 
 @end

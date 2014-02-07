@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "SK8GameListCell.h"
 #import "SK8GameListDetailViewController.h"
+#import "SK8GameNewTableViewController.h"
 
 @interface SK8GameListViewController ()
 @property UIImage * Image_BlockMenuBarButton;
@@ -23,6 +24,7 @@
 @end
 
 @implementation SK8GameListViewController
+
 @synthesize  Image_BlockMenuBarButton, Btn_ForCustomBarButtonItem;
 @synthesize BtnGames, BtnSearch, BtnStarred;
 @synthesize TableViewGamelist;
@@ -67,12 +69,12 @@
     
     
     // UIRefreshControl
-    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init]; [refreshControl addTarget:self action:@selector(updateDataSource) forControlEvents:UIControlEventValueChanged];
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(updateDataSource) forControlEvents:UIControlEventValueChanged];
     
     self.tableViewControllerForRefreshControl = [[UITableViewController alloc] init];
     self.tableViewControllerForRefreshControl.tableView = self.TableViewGamelist;
     self.tableViewControllerForRefreshControl.refreshControl = refreshControl;
-    
 }
 
 - (void)updateDataSource
@@ -85,6 +87,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)didDismissedModalView
+{
+    [self updateDataSource];
 }
 
 #pragma mark - NewRoom Modal
@@ -158,7 +165,8 @@
         self.RoomDetails = [self.DicGameList valueForKey:keys[row]];
         sk8vc.roomDetails = self.RoomDetails;
     }else if ([segue.identifier isEqualToString:@"SK8GameNewModal"]){
-        
+        SK8GameNewTableViewController * sk8ntvc = (SK8GameNewTableViewController *)[segue.destinationViewController topViewController];
+        sk8ntvc.delegate = self;
     }
     
     

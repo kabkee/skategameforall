@@ -7,15 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SK8GameNewTableViewController.h"
 
-@interface SK8GameListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface SK8GameListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, SK8GameNewTableViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIButton *BtnStarred;
 @property (strong, nonatomic) IBOutlet UIButton *BtnGames;
 @property (strong, nonatomic) IBOutlet UIButton *BtnSearch;
 @property (strong, nonatomic) IBOutlet UITableView *TableViewGamelist;
 
-
+- (void)didDismissedModalView;
 
 
 @end

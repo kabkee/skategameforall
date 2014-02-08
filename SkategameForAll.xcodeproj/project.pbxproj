@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4337DDF918A5FF8000EBCDFF /* GTMOAuth2ViewControllerTouch.m in Sources */ = {isa = PBXBuildFile; fileRef = 4337DDF118A5FF8000EBCDFF /* GTMOAuth2ViewControllerTouch.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4337DDFA18A5FF8000EBCDFF /* GTMOAuth2Authentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 4337DDF318A5FF8000EBCDFF /* GTMOAuth2Authentication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4337DDFB18A5FF8000EBCDFF /* GTMOAuth2SignIn.m in Sources */ = {isa = PBXBuildFile; fileRef = 4337DDF518A5FF8000EBCDFF /* GTMOAuth2SignIn.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4337DDFC18A5FF8000EBCDFF /* GTMHTTPFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 4337DDF718A5FF8000EBCDFF /* GTMHTTPFetcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4337DDFD18A5FF8000EBCDFF /* GTMOAuth2ViewTouch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4337DDF818A5FF8000EBCDFF /* GTMOAuth2ViewTouch.xib */; };
+		4337DE0018A5FFDB00EBCDFF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4337DDFF18A5FFDB00EBCDFF /* Security.framework */; };
+		4337DE0218A5FFE600EBCDFF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4337DE0118A5FFE600EBCDFF /* SystemConfiguration.framework */; };
+		4337DE0418A610B800EBCDFF /* LoginView_justForSave.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4337DE0318A610B800EBCDFF /* LoginView_justForSave.xib */; };
+		4337DE0818A6228000EBCDFF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4337DE0718A6228000EBCDFF /* LoginViewController.m */; };
+		4337DE0B18A6569C00EBCDFF /* SideBarSocialIDCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4337DE0A18A6569C00EBCDFF /* SideBarSocialIDCell.m */; };
 		4362BF3018A3D3AA0096325F /* SK8GameNewMaxPplCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4362BF2F18A3D3AA0096325F /* SK8GameNewMaxPplCell.xib */; };
 		4362BF3618A3D4AA0096325F /* SK8GameNewMaxPplCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4362BF3518A3D4AA0096325F /* SK8GameNewMaxPplCell.m */; };
 		9F26F2C51877BFAA00187C06 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F26F2C41877BFAA00187C06 /* Foundation.framework */; };
@@ -31,7 +41,6 @@
 		9F2BCD2A189A0CA1009F08E4 /* SK8GameNewStartDateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F2BCD29189A0CA1009F08E4 /* SK8GameNewStartDateCell.xib */; };
 		9F3FF630189B2746000529E8 /* SK8GameNewLimitDayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F3FF62F189B2746000529E8 /* SK8GameNewLimitDayCell.xib */; };
 		9F3FF633189B275E000529E8 /* SK8GameNewLimitDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F3FF632189B275E000529E8 /* SK8GameNewLimitDayCell.m */; };
-		9FC1426118966BDF0051E97C /* SocialLoginPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FC1426018966BDF0051E97C /* SocialLoginPage.xib */; };
 		9FC142AB18990A290051E97C /* SK8GameNewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC142A918990A290051E97C /* SK8GameNewTableViewController.m */; };
 		9FC142AF1899EBCF0051E97C /* SK8GameNewTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FC142AE1899EBCF0051E97C /* SK8GameNewTitleCell.xib */; };
 		9FC142B11899EC3D0051E97C /* SK8GameNewPasswordCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FC142B01899EC3D0051E97C /* SK8GameNewPasswordCell.xib */; };
@@ -64,6 +73,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4337DDF018A5FF8000EBCDFF /* GTMOAuth2ViewControllerTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMOAuth2ViewControllerTouch.h; sourceTree = "<group>"; };
+		4337DDF118A5FF8000EBCDFF /* GTMOAuth2ViewControllerTouch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMOAuth2ViewControllerTouch.m; sourceTree = "<group>"; };
+		4337DDF218A5FF8000EBCDFF /* GTMOAuth2Authentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMOAuth2Authentication.h; sourceTree = "<group>"; };
+		4337DDF318A5FF8000EBCDFF /* GTMOAuth2Authentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMOAuth2Authentication.m; sourceTree = "<group>"; };
+		4337DDF418A5FF8000EBCDFF /* GTMOAuth2SignIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMOAuth2SignIn.h; sourceTree = "<group>"; };
+		4337DDF518A5FF8000EBCDFF /* GTMOAuth2SignIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMOAuth2SignIn.m; sourceTree = "<group>"; };
+		4337DDF618A5FF8000EBCDFF /* GTMHTTPFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMHTTPFetcher.h; sourceTree = "<group>"; };
+		4337DDF718A5FF8000EBCDFF /* GTMHTTPFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMHTTPFetcher.m; sourceTree = "<group>"; };
+		4337DDF818A5FF8000EBCDFF /* GTMOAuth2ViewTouch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GTMOAuth2ViewTouch.xib; sourceTree = "<group>"; };
+		4337DDFF18A5FFDB00EBCDFF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		4337DE0118A5FFE600EBCDFF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		4337DE0318A610B800EBCDFF /* LoginView_justForSave.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView_justForSave.xib; sourceTree = "<group>"; };
+		4337DE0618A6228000EBCDFF /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		4337DE0718A6228000EBCDFF /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		4337DE0918A6569C00EBCDFF /* SideBarSocialIDCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideBarSocialIDCell.h; sourceTree = "<group>"; };
+		4337DE0A18A6569C00EBCDFF /* SideBarSocialIDCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideBarSocialIDCell.m; sourceTree = "<group>"; };
 		4362BF2F18A3D3AA0096325F /* SK8GameNewMaxPplCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SK8GameNewMaxPplCell.xib; sourceTree = "<group>"; };
 		4362BF3418A3D4AA0096325F /* SK8GameNewMaxPplCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SK8GameNewMaxPplCell.h; sourceTree = "<group>"; };
 		4362BF3518A3D4AA0096325F /* SK8GameNewMaxPplCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SK8GameNewMaxPplCell.m; sourceTree = "<group>"; };
@@ -99,7 +124,6 @@
 		9F3FF62F189B2746000529E8 /* SK8GameNewLimitDayCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SK8GameNewLimitDayCell.xib; sourceTree = "<group>"; };
 		9F3FF631189B275E000529E8 /* SK8GameNewLimitDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SK8GameNewLimitDayCell.h; sourceTree = "<group>"; };
 		9F3FF632189B275E000529E8 /* SK8GameNewLimitDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SK8GameNewLimitDayCell.m; sourceTree = "<group>"; };
-		9FC1426018966BDF0051E97C /* SocialLoginPage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialLoginPage.xib; sourceTree = "<group>"; };
 		9FC142A818990A290051E97C /* SK8GameNewTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SK8GameNewTableViewController.h; sourceTree = "<group>"; };
 		9FC142A918990A290051E97C /* SK8GameNewTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SK8GameNewTableViewController.m; sourceTree = "<group>"; };
 		9FC142AE1899EBCF0051E97C /* SK8GameNewTitleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SK8GameNewTitleCell.xib; sourceTree = "<group>"; };
@@ -135,6 +159,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4337DE0218A5FFE600EBCDFF /* SystemConfiguration.framework in Frameworks */,
+				4337DE0018A5FFDB00EBCDFF /* Security.framework in Frameworks */,
 				9F26F2C71877BFAA00187C06 /* CoreGraphics.framework in Frameworks */,
 				9F26F2C91877BFAA00187C06 /* UIKit.framework in Frameworks */,
 				9F26F2C51877BFAA00187C06 /* Foundation.framework in Frameworks */,
@@ -154,6 +180,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4337DDFE18A5FF9000EBCDFF /* OAuth Classes & Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4337DDF018A5FF8000EBCDFF /* GTMOAuth2ViewControllerTouch.h */,
+				4337DDF118A5FF8000EBCDFF /* GTMOAuth2ViewControllerTouch.m */,
+				4337DDF218A5FF8000EBCDFF /* GTMOAuth2Authentication.h */,
+				4337DDF318A5FF8000EBCDFF /* GTMOAuth2Authentication.m */,
+				4337DDF418A5FF8000EBCDFF /* GTMOAuth2SignIn.h */,
+				4337DDF518A5FF8000EBCDFF /* GTMOAuth2SignIn.m */,
+				4337DDF618A5FF8000EBCDFF /* GTMHTTPFetcher.h */,
+				4337DDF718A5FF8000EBCDFF /* GTMHTTPFetcher.m */,
+				4337DDF818A5FF8000EBCDFF /* GTMOAuth2ViewTouch.xib */,
+			);
+			name = "OAuth Classes & Resources";
+			sourceTree = "<group>";
+		};
+		4337DE0518A6225200EBCDFF /* Thrash */ = {
+			isa = PBXGroup;
+			children = (
+				4337DE0318A610B800EBCDFF /* LoginView_justForSave.xib */,
+			);
+			name = Thrash;
+			sourceTree = "<group>";
+		};
+		4337DE0C18A656A100EBCDFF /* SideBarView */ = {
+			isa = PBXGroup;
+			children = (
+				9F26F55618786C1D00187C06 /* SideBarViewController.h */,
+				9F26F55718786C1D00187C06 /* SideBarViewController.m */,
+				4337DE0D18A656AF00EBCDFF /* CustomCells */,
+			);
+			name = SideBarView;
+			sourceTree = "<group>";
+		};
+		4337DE0D18A656AF00EBCDFF /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				4337DE0918A6569C00EBCDFF /* SideBarSocialIDCell.h */,
+				4337DE0A18A6569C00EBCDFF /* SideBarSocialIDCell.m */,
+			);
+			name = CustomCells;
+			sourceTree = "<group>";
+		};
 		9F26F2B81877BFAA00187C06 = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +245,8 @@
 		9F26F2C31877BFAA00187C06 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4337DE0118A5FFE600EBCDFF /* SystemConfiguration.framework */,
+				4337DDFF18A5FFDB00EBCDFF /* Security.framework */,
 				9F26F2C41877BFAA00187C06 /* Foundation.framework */,
 				9F26F2C61877BFAA00187C06 /* CoreGraphics.framework */,
 				9F26F2C81877BFAA00187C06 /* UIKit.framework */,
@@ -190,15 +261,16 @@
 				9F26F2D61877BFAA00187C06 /* Main.storyboard */,
 				9F26F2D31877BFAA00187C06 /* AppDelegate.h */,
 				9F26F2D41877BFAA00187C06 /* AppDelegate.m */,
-				9FC1426018966BDF0051E97C /* SocialLoginPage.xib */,
 				9F26F2D91877BFAA00187C06 /* ViewController.h */,
 				9F26F2DA1877BFAA00187C06 /* ViewController.m */,
-				9F26F55618786C1D00187C06 /* SideBarViewController.h */,
-				9F26F55718786C1D00187C06 /* SideBarViewController.m */,
+				4337DE0618A6228000EBCDFF /* LoginViewController.h */,
+				4337DE0718A6228000EBCDFF /* LoginViewController.m */,
+				4337DE0C18A656A100EBCDFF /* SideBarView */,
 				9FC142AD18990A470051E97C /* SK8GameNew */,
 				9FDA32DF188A808D009AE0AF /* SK8GameList */,
 				9FDA32DE188A807A009AE0AF /* SK8GameListDetail */,
 				9F26F2DC1877BFAA00187C06 /* Images.xcassets */,
+				4337DE0518A6225200EBCDFF /* Thrash */,
 				9F26F2CB1877BFAA00187C06 /* Supporting Files */,
 			);
 			path = SkategameForAll;
@@ -207,6 +279,7 @@
 		9F26F2CB1877BFAA00187C06 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4337DDFE18A5FF9000EBCDFF /* OAuth Classes & Resources */,
 				9F26F5591878724C00187C06 /* image */,
 				9F26F2FC1878625500187C06 /* Library */,
 				9F26F2CC1877BFAA00187C06 /* SkategameForAll-Info.plist */,
@@ -262,12 +335,12 @@
 			children = (
 				9FC142A818990A290051E97C /* SK8GameNewTableViewController.h */,
 				9FC142A918990A290051E97C /* SK8GameNewTableViewController.m */,
-				9FC142B51899EEC60051E97C /* customCells */,
+				9FC142B51899EEC60051E97C /* CustomCells */,
 			);
 			name = SK8GameNew;
 			sourceTree = "<group>";
 		};
-		9FC142B51899EEC60051E97C /* customCells */ = {
+		9FC142B51899EEC60051E97C /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
 				9FC142B21899EEAD0051E97C /* SK8GameNewTitleCell.h */,
@@ -289,7 +362,7 @@
 				4362BF3518A3D4AA0096325F /* SK8GameNewMaxPplCell.m */,
 				4362BF2F18A3D3AA0096325F /* SK8GameNewMaxPplCell.xib */,
 			);
-			name = customCells;
+			name = CustomCells;
 			sourceTree = "<group>";
 		};
 		9FDA32DE188A807A009AE0AF /* SK8GameListDetail */ = {
@@ -299,7 +372,7 @@
 				9FDA32DC188A8070009AE0AF /* SK8GameListDetailCell.m */,
 				9FDA32D8188A7FF0009AE0AF /* SK8GameListDetailViewController.h */,
 				9FDA32D9188A7FF0009AE0AF /* SK8GameListDetailViewController.m */,
-				9FDA32EE188B9C44009AE0AF /* customCells */,
+				9FDA32EE188B9C44009AE0AF /* CustomCells */,
 			);
 			name = SK8GameListDetail;
 			sourceTree = "<group>";
@@ -315,7 +388,7 @@
 			name = SK8GameList;
 			sourceTree = "<group>";
 		};
-		9FDA32EE188B9C44009AE0AF /* customCells */ = {
+		9FDA32EE188B9C44009AE0AF /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
 				9FDA32E6188B7B7A009AE0AF /* SK8GameListDetailStatusCell.h */,
@@ -325,7 +398,7 @@
 				9FDA32EA188B7BA7009AE0AF /* SK8GameListDetailPlayerCell.m */,
 				9FDA32EF188B9D48009AE0AF /* SK8GameListDetailPlayerCell.xib */,
 			);
-			name = customCells;
+			name = CustomCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -404,9 +477,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9FC1426118966BDF0051E97C /* SocialLoginPage.xib in Resources */,
 				9FE5ED0A189B71E90064DA96 /* ready.png in Resources */,
 				9FC142AF1899EBCF0051E97C /* SK8GameNewTitleCell.xib in Resources */,
+				4337DE0418A610B800EBCDFF /* LoginView_justForSave.xib in Resources */,
 				9F2BCD2A189A0CA1009F08E4 /* SK8GameNewStartDateCell.xib in Resources */,
 				9FE5ED11189B875C0064DA96 /* SK8GameNewAutoAttackOrderCell.xib in Resources */,
 				9F26F2DD1877BFAA00187C06 /* Images.xcassets in Resources */,
@@ -417,6 +490,7 @@
 				9FDA32E3188A8229009AE0AF /* ended.png in Resources */,
 				9F26F2CF1877BFAA00187C06 /* InfoPlist.strings in Resources */,
 				9F26F563187903CE00187C06 /* list-circle.png in Resources */,
+				4337DDFD18A5FF8000EBCDFF /* GTMOAuth2ViewTouch.xib in Resources */,
 				4362BF3018A3D3AA0096325F /* SK8GameNewMaxPplCell.xib in Resources */,
 				9F3FF630189B2746000529E8 /* SK8GameNewLimitDayCell.xib in Resources */,
 				9FDA32E4188A8229009AE0AF /* paused.png in Resources */,
@@ -441,14 +515,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F26F2DB1877BFAA00187C06 /* ViewController.m in Sources */,
+				4337DE0818A6228000EBCDFF /* LoginViewController.m in Sources */,
 				9F2BCD26189A0C85009F08E4 /* SK8GameNewStartDateCell.m in Sources */,
 				9FDA32E8188B7B7A009AE0AF /* SK8GameListDetailStatusCell.m in Sources */,
 				9F26F2D51877BFAA00187C06 /* AppDelegate.m in Sources */,
+				4337DDFC18A5FF8000EBCDFF /* GTMHTTPFetcher.m in Sources */,
 				9F26F2D11877BFAA00187C06 /* main.m in Sources */,
 				9F26F55818786C1D00187C06 /* SideBarViewController.m in Sources */,
 				9FDA32EB188B7BA7009AE0AF /* SK8GameListDetailPlayerCell.m in Sources */,
+				4337DDFB18A5FF8000EBCDFF /* GTMOAuth2SignIn.m in Sources */,
+				4337DE0B18A6569C00EBCDFF /* SideBarSocialIDCell.m in Sources */,
+				4337DDFA18A5FF8000EBCDFF /* GTMOAuth2Authentication.m in Sources */,
 				9F26F2FB1878625000187C06 /* SWRevealViewController.m in Sources */,
 				9FE5ED0D189B87430064DA96 /* SK8GameNewAutoAttackOrderCell.m in Sources */,
+				4337DDF918A5FF8000EBCDFF /* GTMOAuth2ViewControllerTouch.m in Sources */,
 				9FDA32D4188A68A0009AE0AF /* SK8GameListCell.m in Sources */,
 				9FC142B81899EEF40051E97C /* SK8GameNewPasswordCell.m in Sources */,
 				4362BF3618A3D4AA0096325F /* SK8GameNewMaxPplCell.m in Sources */,
@@ -587,6 +667,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SkategameForAll/SkategameForAll-Prefix.pch";
 				INFOPLIST_FILE = "SkategameForAll/SkategameForAll-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -600,6 +681,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SkategameForAll/SkategameForAll-Prefix.pch";
 				INFOPLIST_FILE = "SkategameForAll/SkategameForAll-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

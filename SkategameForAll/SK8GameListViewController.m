@@ -59,14 +59,12 @@
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
-    
     //data source
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     self.DicGameList = appDelegate.gameRoomList;
     
     self.TableViewGamelist.dataSource = self;
     self.TableViewGamelist.delegate = self;
-    
     
     // UIRefreshControl
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
@@ -118,14 +116,12 @@
     SK8GameListCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(cell == nil){
         cell = [[SK8GameListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: cellIdentifier];
-        
     }
     
     NSMutableArray *keys = [[NSMutableArray alloc] initWithArray:[self.DicGameList allKeys]];
     NSInteger row = [indexPath row];
     
     if (![keys[row] isEqualToString:@""]) {
-        
         if( [self.DicGameList valueForKey:keys[row]]){
             NSDictionary * dic = [self.DicGameList valueForKey:keys[row]];
             
@@ -168,8 +164,7 @@
         SK8GameNewTableViewController * sk8ntvc = (SK8GameNewTableViewController *)[segue.destinationViewController topViewController];
         sk8ntvc.delegate = self;
     }
-    
-    
 }
+
 
 @end

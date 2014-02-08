@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class GTMOAuth2Authentication;
 
 @interface ViewController : UIViewController
 

@@ -43,7 +43,6 @@
 @implementation SK8GameNewTableViewController
 @synthesize barBtnLeftCancel, barBtnRightDone;
 
-
 static NSString * kTextFieldTitleValueChanged = @"textFieldTitleValueChange";
 static NSString * kTextFieldPasswordEnabled = @"textFieldPasswordEnabled";
 
@@ -102,10 +101,8 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
         if ([passwordCell.textFieldPassword.text isEqualToString:@""] || passwordCell.textFieldPassword.text == NULL) {
             passwordCell.labelPassword.textColor = [UIColor redColor];
         }
-
     }
     passwordCell.textFieldPassword.enabled = passwordCell.switchPasswordEnable.on;
-
 }
 
 #pragma mark - Table view data source
@@ -133,7 +130,6 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
         self.titleCell.textFieldTitle.delegate = self;
         [self.titleCell.textFieldTitle addTarget:self action:@selector(textFieldValueChanged:) forControlEvents:UIControlEventEditingChanged];
         self.titleCell.labelTitle.textColor = [UIColor redColor];
-        
         return self.titleCell;
     }
     if (indexPath.row == 1) {
@@ -143,15 +139,12 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed: [self.cellNibArray objectAtIndex:indexPath.row] owner:self options:nil];
             self.passwordCell = [nib objectAtIndex:0];
         }
-        
         self.passwordCell.textFieldPassword.delegate = self;
         [self.passwordCell.switchPasswordEnable addTarget:self action:@selector(passwordCellSwitchChanged) forControlEvents:UIControlEventTouchUpInside];
         self.passwordCell.backgroundColor = [UIColor lightGrayColor];
         
         [self.passwordCell.textFieldPassword addTarget:self action:@selector(textFieldValueChanged:) forControlEvents:UIControlEventEditingChanged];
-
         return self.passwordCell;
-        
     }
     if (indexPath.row == 2) {
         CellIdentifier = [self.cellArray objectAtIndex:indexPath.row]; // @"startAtCell"
@@ -160,7 +153,6 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed: [self.cellNibArray objectAtIndex:indexPath.row] owner:self options:nil];
             self.startDateCell = [nib objectAtIndex:0];
         }
-        
         self.startDateCell.datePickerStartAt.minimumDate = [[ NSDate alloc ] initWithTimeIntervalSinceNow: (NSTimeInterval) 60*30 ];
         self.startDateCell.datePickerStartAt.maximumDate = [NSDate dateWithTimeIntervalSinceNow: 24*60*60*365];
         
@@ -170,9 +162,7 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
         }else{
             [self dateTimePickedAndValueChanged];
         }
-        
         [self.startDateCell.datePickerStartAt addTarget:self action:@selector(dateTimePickedAndValueChanged)  forControlEvents:UIControlEventValueChanged];
-        
         return self.startDateCell;
     }
     if (indexPath.row == 3) {
@@ -201,7 +191,6 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed: [self.cellNibArray objectAtIndex:indexPath.row] owner:self options:nil];
             limitDayCell = [nib objectAtIndex:0];
         }
-
         limitDayCell.pickerViewForDays.delegate = self;
         limitDayCell.pickerViewForDays.dataSource = self;
 
@@ -223,7 +212,6 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
             }
             self.defLimitDayCell = limitDayCell;
         }
-
         return limitDayCell;
     }
     if (indexPath.row == 6) {
@@ -241,7 +229,6 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
     if (!cell) {
         cell = [[UITableViewCell alloc]init];
     }
-    
     return cell;
 }
 
@@ -325,7 +312,6 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
 {
     NSString * stringRow = [NSString stringWithFormat:@"%d", row+1];
     SK8GameNewLimitDayCell * tempCell;
-
     if (pickerView == self.maxPplCell.pickerViewForPpl) {
         self.tempSavedMaxPpl = stringRow;
         self.maxPplCell.labelMaxPpl.text = stringRow;
@@ -374,42 +360,42 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
         // Do save all the info of new room
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 
-  @{@"room1":
-        @{
-            //roomDetail
-            @"createDate": @"2014-01-13", //dateTime
-            @"status": @"Playing", // [Ready, Playing, Paused, Ended]
-            @"title": @"Kabkee's room1", //string
-            @"gameStartTime": @"2014-01-15", //dateTime
-            @"maxPpl":@5, // max 5 ppl
-            @"players":@[@"kabkee",@"Gomsun2", @"Minsu"], //array // attOrder
-            @"watchers":@[@"kabkeeWC",@"Gomsun2WC", @"MinsuWC", @"SuminWC", @"DanbeeWC", @"HyojuWC"], // array
-            @"clikingNo":@100, // int
-            @"starred":@[@"kabkeeST",@"Gomsun2ST", @"MinsuST", @"SuminST", @"DanbeeST", @"HyojuST"], // array
-            @"attLimitDay":@7, // int Days
-            @"defLimitDay":@7, // int Days
-            @"orderAttAutomate":@NO, //boolean
-            //gameDetail
-            @"statusOfAtt":@YES, //booean Att=YES, Def=NO
-            @"attacker":@"kabkee",
-            @"defender":@[@"Gomsun2"], // who uploaded def video
-            @"videos":@[
-                    @{@"statusOfAtt": @YES,
-                      @"videoAdd":@"http://urlAtt.com",
-                      @"regTime":@"2014-01-14",
-                      @"title":@"kickflip",
-                      @"player":@"kabkee"},
-                    @{@"statusOfAtt": @NO,
-                      @"videoAdd":@"http://urlDef.com",
-                      @"regTime":@"2014-01-15",
-                      @"title":@"kickflip",
-                      @"player":@"Gomsun2"}
-                    ],
-            @"scores":@{@"kabkee": @2,
-                        @"Gomsun2": @3,
-                        @"Minsu": @5} // S(1), K(2), A(3), T(4), E(5)= over
-            },
-    };
+//  @{@"room1":
+//        @{
+//            //roomDetail
+//            @"createDate": @"2014-01-13", //dateTime
+//            @"status": @"Playing", // [Ready, Playing, Paused, Ended]
+//            @"title": @"Kabkee's room1", //string
+//            @"gameStartTime": @"2014-01-15", //dateTime
+//            @"maxPpl":@5, // max 5 ppl
+//            @"players":@[@"kabkee",@"Gomsun2", @"Minsu"], //array // attOrder
+//            @"watchers":@[@"kabkeeWC",@"Gomsun2WC", @"MinsuWC", @"SuminWC", @"DanbeeWC", @"HyojuWC"], // array
+//            @"clikingNo":@100, // int
+//            @"starred":@[@"kabkeeST",@"Gomsun2ST", @"MinsuST", @"SuminST", @"DanbeeST", @"HyojuST"], // array
+//            @"attLimitDay":@7, // int Days
+//            @"defLimitDay":@7, // int Days
+//            @"orderAttAutomate":@NO, //boolean
+//            //gameDetail
+//            @"statusOfAtt":@YES, //booean Att=YES, Def=NO
+//            @"attacker":@"kabkee",
+//            @"defender":@[@"Gomsun2"], // who uploaded def video
+//            @"videos":@[
+//                    @{@"statusOfAtt": @YES,
+//                      @"videoAdd":@"http://urlAtt.com",
+//                      @"regTime":@"2014-01-14",
+//                      @"title":@"kickflip",
+//                      @"player":@"kabkee"},
+//                    @{@"statusOfAtt": @NO,
+//                      @"videoAdd":@"http://urlDef.com",
+//                      @"regTime":@"2014-01-15",
+//                      @"title":@"kickflip",
+//                      @"player":@"Gomsun2"}
+//                    ],
+//            @"scores":@{@"kabkee": @2,
+//                        @"Gomsun2": @3,
+//                        @"Minsu": @5} // S(1), K(2), A(3), T(4), E(5)= over
+//            },
+//    };
         
         static NSString * kRoomDataCreateDate = @"createDate";
         static NSString * kRoomDataStatus = @"status";
@@ -420,9 +406,9 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
         static NSString * kRoomDataAttLimitDay = @"attLimitDay";
         static NSString * kRoomDataDefLimitDay = @"defLimitDay";
         static NSString * kRoomDataOrderAttAutomate = @"orderAttAutomate";
-        static NSString * kRoomDataWatchers = @"watchers";
-        static NSString * kRoomDataClickingNo = @"clickingNo";
-         static NSString * kRoomDataStarred = @"starred";
+//        static NSString * kRoomDataWatchers = @"watchers";
+//        static NSString * kRoomDataClickingNo = @"clickingNo";
+//         static NSString * kRoomDataStarred = @"starred";
         
         NSDictionary *newRoom = @{
                                   @"key": [NSString stringWithFormat:@"%@+%@+%@",self.startDateCell.labelStartAt.text, self.titleCell.textFieldTitle.text, [NSDate new]],
@@ -441,12 +427,10 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
                                         }
                                   };
     
-    
         [appDelegate addData:newRoom];
         [self dismissViewControllerAnimated:YES completion:^{
             [self.delegate didDismissedModalView];
         }];
-
     }
 }
 
@@ -468,7 +452,6 @@ static NSString * kGoodForDoneTextFieldPassword = @"textFieldPassword";
             self.titleCell.labelTitle.textColor = [UIColor blackColor];
             [self.goodForDone setObject:@true forKey:kGoodForDoneTextFieldTitle];
         }
-
     }else if (sender == self.passwordCell.textFieldPassword){
         if ( self.passwordCell.textFieldPassword.enabled && ([self.passwordCell.textFieldPassword.text isEqualToString:@""] || self.passwordCell.textFieldPassword.text == NULL)) {
             self.passwordCell.labelPassword.textColor = [UIColor redColor];

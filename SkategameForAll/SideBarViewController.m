@@ -109,11 +109,12 @@ static NSString *const kSkateGameForAllDefaults = @"skateGameForAllDefaults";
             socialIDCell = [[SideBarSocialIDCell alloc] init];
         }
         if (self.userData) {
-            socialIDCell.labelSocialID.text = [self.userData objectForKey:@"email"];
+            socialIDCell.labelSocialID.text = [self.userData objectForKey:@"name"];
+            UIImage * img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://lh3.googleusercontent.com/-8jYQmhJpH3A/AAAAAAAAAAI/AAAAAAAAACY/_4uM5-jbWBE/photo.jpg?sz=50"]]]];
+            socialIDCell.imgViewlSocialPic.image = img;
             socialIDCell.selectionStyle = UITableViewCellSelectionStyleNone;
         }else{
             socialIDCell.labelSocialID.text = @"Log in needed";
-            socialIDCell.imgViewlSocialPic.image = nil;
             socialIDCell.selectionStyle = UITableViewCellSelectionStyleGray;
         }
         return socialIDCell;

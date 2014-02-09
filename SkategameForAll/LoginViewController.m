@@ -18,6 +18,7 @@ static NSString *const GoogleClientSecret = @"ZdlMSq6ZWY1GgQDvFnJpnHwN";
 static NSString *const kGoogleUserData = @"GoogleUserData";
 
 @interface LoginViewController ()
+@property NSDictionary * userProfile;
 
 @end
 
@@ -67,6 +68,8 @@ static NSString *const kGoogleUserData = @"GoogleUserData";
     NSDictionary *params = [NSDictionary dictionaryWithObject:@"ko"
                                                        forKey:@"hl"];
     viewController.signIn.additionalAuthorizationParameters = params;
+    viewController.signIn.shouldFetchGoogleUserProfile = YES;
+
     
     // Optional: display some html briefly before the sign-in page loads
     NSString *html = @"<html><body bgcolor=silver><div align=center>Loading sign-in page...</div></body></html>";
@@ -104,6 +107,7 @@ static NSString *const kGoogleUserData = @"GoogleUserData";
             NSString *str = [[NSString alloc] initWithData:responseData
                                                    encoding:NSUTF8StringEncoding];
             NSLog(@"%@", str);
+
         }
         self.auth = nil;
     } else {
@@ -111,6 +115,12 @@ static NSString *const kGoogleUserData = @"GoogleUserData";
         self.auth = auth;
         NSLog(@"%@", @"login Success");
         [self checkIfCanAuthWithUserDefaults];
+        
+        NSUserDefaults * skategameForAllDefaults = [NSUserDefaults standardUserDefaults];
+        NSDictionary *profile = viewController.signIn.userProfile;
+        self.userProfile = profile;
+        [skategameForAllDefaults setObject:self.userProfile forKey:kGoogleUserData];
+        
         [[self navigationController] setNavigationBarHidden:NO];
         [[self navigationController] popViewControllerAnimated:YES];
     }
@@ -128,7 +138,11 @@ static NSString *const kGoogleUserData = @"GoogleUserData";
     auth = [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeyChainItemName clientID:kGoogleClientIDKey clientSecret:kGoogleClientSecretKey];
     if (auth.canAuthorize) {
         self.canAutholize = YES;
-        [skategameForAllDefaults setObject:auth.parameters forKey:kGoogleUserData];
+        
+
+        NSLog(@"auth.parameters : %@", self.userProfile);
+        
+        
     }else{
         self.canAutholize = NO;
         [skategameForAllDefaults removeObjectForKey:kGoogleUserData];

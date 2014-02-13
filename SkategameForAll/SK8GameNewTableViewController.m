@@ -18,8 +18,8 @@
 #import "SK8GameNewMaxPplCell.h"
 #import "AppDelegate.h"
 
-
 @interface SK8GameNewTableViewController ()
+
 @property (strong, nonatomic) SK8GameNewTitleCell * titleCell;
 @property (strong, nonatomic) SK8GameNewPasswordCell * passwordCell;
 @property (strong, nonatomic) SK8GameNewStartDateCell * startDateCell;
@@ -27,6 +27,7 @@
 @property (strong, nonatomic) SK8GameNewLimitDayCell * attLimitDayCell;
 @property (strong, nonatomic) SK8GameNewLimitDayCell * defLimitDayCell;
 @property (strong, nonatomic) SK8GameNewAutoAttackOrderCell * autoAttackOrderCell;
+
 @property (strong, nonatomic) NSDate * tempSavedDateTime;
 @property (strong, nonatomic) NSString * tempSavedMaxPpl;
 @property (strong, nonatomic) NSString * tempSavedAttLimitDay;
@@ -36,6 +37,7 @@
 @property (strong, nonatomic) NSMutableArray * pickerViewDays;
 @property (strong, nonatomic) NSMutableArray * pickerViewPpl;
 @property (strong, nonatomic) NSMutableDictionary * goodForDone;
+
 @property int lastSelectedRow;
 
 @end

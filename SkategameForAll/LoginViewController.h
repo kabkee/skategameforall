@@ -19,6 +19,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *btn_TwitterLogin;
 @property (strong, nonatomic) IBOutlet UIButton *btn_Signin;
 @property (strong, nonatomic) IBOutlet UIButton *btn_Login;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *actvtIndicator;
 
 - (IBAction)loginToGoogle:(id)sender;
 

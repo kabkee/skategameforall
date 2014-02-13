@@ -20,6 +20,7 @@ static NSString *const kGoogleUserData = @"GoogleUserData";
 @interface LoginViewController ()
 @property NSDictionary * userProfile;
 
+
 @end
 
 @implementation LoginViewController
@@ -39,7 +40,8 @@ static NSString *const kGoogleUserData = @"GoogleUserData";
 	// Do any additional setup after loading the view.
     [self.navigationController setNavigationBarHidden:YES];
     
-    
+    // activityIndicator
+    [self.actvtIndicator stopAnimating];
 }
 
 - (void)didReceiveMemoryWarning
@@ -55,7 +57,6 @@ static NSString *const kGoogleUserData = @"GoogleUserData";
     
     // Display the autentication view.
     SEL finishedSel = @selector(viewController:finishedWithAuth:error:);
-    
     GTMOAuth2ViewControllerTouch *viewController;
     viewController = [GTMOAuth2ViewControllerTouch controllerWithScope:scope
                                                               clientID:GoogleClientID
@@ -65,7 +66,7 @@ static NSString *const kGoogleUserData = @"GoogleUserData";
                                                       finishedSelector:finishedSel];
 
     // using BCP 47 language codes, display language
-    NSDictionary *params = [NSDictionary dictionaryWithObject:@"ko"
+    NSDictionary *params = [NSDictionary dictionaryWithObject:@"en"
                                                        forKey:@"hl"];
     viewController.signIn.additionalAuthorizationParameters = params;
     viewController.signIn.shouldFetchGoogleUserProfile = YES;
@@ -75,10 +76,8 @@ static NSString *const kGoogleUserData = @"GoogleUserData";
     NSString *html = @"<html><body bgcolor=silver><div align=center>Loading sign-in page...</div></body></html>";
     viewController.initialHTMLString = html;
 
-//    [self dismissViewControllerAnimated:NO completion:^{
-//        [[self navigationController] pushViewController:viewController animated:YES];
-//    }];
     [[self navigationController] pushViewController:viewController animated:YES];
+    [self.actvtIndicator startAnimating];
 }
 
 
@@ -97,6 +96,8 @@ static NSString *const kGoogleUserData = @"GoogleUserData";
 - (void)viewController:(GTMOAuth2ViewControllerTouch *)viewController
       finishedWithAuth:(GTMOAuth2Authentication *)auth
                  error:(NSError *)error {
+
+    
     if (error != nil) {
         // Authentication failed (perhaps the user denied access, or closed the
         // window before granting access)
@@ -114,15 +115,18 @@ static NSString *const kGoogleUserData = @"GoogleUserData";
         // save the authentication object
         self.auth = auth;
         NSLog(@"%@", @"login Success");
-        [self checkIfCanAuthWithUserDefaults];
-        
+
         NSUserDefaults * skategameForAllDefaults = [NSUserDefaults standardUserDefaults];
         NSDictionary *profile = viewController.signIn.userProfile;
         self.userProfile = profile;
         [skategameForAllDefaults setObject:self.userProfile forKey:kGoogleUserData];
+
+//        NSLog(@"before checking auth.parameters : %@", self.userProfile);
+        [self checkIfCanAuthWithUserDefaults];
         
         [[self navigationController] setNavigationBarHidden:NO];
         [[self navigationController] popViewControllerAnimated:YES];
+        [self.actvtIndicator stopAnimating];
     }
 }
 
@@ -138,11 +142,6 @@ static NSString *const kGoogleUserData = @"GoogleUserData";
     auth = [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeyChainItemName clientID:kGoogleClientIDKey clientSecret:kGoogleClientSecretKey];
     if (auth.canAuthorize) {
         self.canAutholize = YES;
-        
-
-        NSLog(@"auth.parameters : %@", self.userProfile);
-        
-        
     }else{
         self.canAutholize = NO;
         [skategameForAllDefaults removeObjectForKey:kGoogleUserData];

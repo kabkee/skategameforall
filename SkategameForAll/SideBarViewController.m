@@ -49,11 +49,8 @@ static NSString *const kSkateGameForAllDefaults = @"skateGameForAllDefaults";
 
 -(void)defaultValueChanged:(NSNotification *)notification
 {
-//    NSLog(@"defaults value changed");
     NSUserDefaults * defaults = (NSUserDefaults *)[notification object];
-
     self.userData = [defaults objectForKey: kGoogleUserData];
-//    NSLog(@"self.userData : %@", self.userData);
     if (self.userData) {
         [self.tableView reloadData];
     }
@@ -110,8 +107,14 @@ static NSString *const kSkateGameForAllDefaults = @"skateGameForAllDefaults";
         }
         if (self.userData) {
             socialIDCell.labelSocialID.text = [self.userData objectForKey:@"name"];
-            UIImage * img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://lh3.googleusercontent.com/-8jYQmhJpH3A/AAAAAAAAAAI/AAAAAAAAACY/_4uM5-jbWBE/photo.jpg?sz=50"]]]];
-            socialIDCell.imgViewlSocialPic.image = img;
+            
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+                NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[self.userData objectForKey:@"picture"]]];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // Update the UI
+                    socialIDCell.imgViewlSocialPic.image = [UIImage imageWithData:imageData];
+                });
+            });
             socialIDCell.selectionStyle = UITableViewCellSelectionStyleNone;
         }else{
             socialIDCell.labelSocialID.text = @"Log in needed";
@@ -123,11 +126,7 @@ static NSString *const kSkateGameForAllDefaults = @"skateGameForAllDefaults";
         if (!cell) {
             cell = [[UITableViewCell alloc]init];
         }
-        if (indexPath.row ==3 && !self.userData) {
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }
     }
-
     
     return cell;
 }
@@ -135,12 +134,12 @@ static NSString *const kSkateGameForAllDefaults = @"skateGameForAllDefaults";
 {
     [tableView cellForRowAtIndexPath:indexPath].selected = NO;
     if (indexPath.row == 0) {
-//        [self.loginViewController loginToGoogle:nil];
         [self.tableView reloadData];
     }
     if (indexPath.row == 3) {
         [self.loginViewController signOut];
         [self.tableView reloadData];
+        [self performSegueWithIdentifier:@"goingToHomeSegue" sender:nil];
     }
 }
 

@@ -14,12 +14,14 @@
 
 static NSString *const kGoogleUserData = @"GoogleUserData";
 static NSString *const kSkateGameForAllDefaults = @"skateGameForAllDefaults";
+static NSString *const defaultSocialName = @"Log in needed";
 
 @interface SideBarViewController ()
 @property NSDictionary * userData;
 @property NSUserDefaults * skateGameForAllDefaults;
-@property LoginViewController *loginViewController;
-
+@property LoginViewController * loginViewController;
+@property SideBarSocialIDCell * socialIDCell;
+@property UIImage * defaultUserImage;
 @end
 
 @implementation SideBarViewController
@@ -39,6 +41,7 @@ static NSString *const kSkateGameForAllDefaults = @"skateGameForAllDefaults";
 {
     [super viewDidLoad];
 
+    self.defaultUserImage = [UIImage imageNamed:@"glyphicons_004_girl.png"];
     self.loginViewController = [[LoginViewController alloc]init];
     
     NSNotificationCenter * nfCenter = [NSNotificationCenter defaultCenter];
@@ -101,26 +104,26 @@ static NSString *const kSkateGameForAllDefaults = @"skateGameForAllDefaults";
     NSString *CellIdentifier = [menuItems objectAtIndex:indexPath.row];
     UITableViewCell *cell;
     if (indexPath.row == 0) {
-        SideBarSocialIDCell * socialIDCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-        if (!socialIDCell) {
-            socialIDCell = [[SideBarSocialIDCell alloc] init];
+            self.socialIDCell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        if (!self.socialIDCell) {
+            self.socialIDCell = [[SideBarSocialIDCell alloc] init];
         }
         if (self.userData) {
-            socialIDCell.labelSocialID.text = [self.userData objectForKey:@"name"];
+            self.socialIDCell.labelSocialID.text = [self.userData objectForKey:@"name"];
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
                 NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[self.userData objectForKey:@"picture"]]];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // Update the UI
-                    socialIDCell.imgViewlSocialPic.image = [UIImage imageWithData:imageData];
+                    self.socialIDCell.imgViewlSocialPic.image = [UIImage imageWithData:imageData];
                 });
             });
-            socialIDCell.selectionStyle = UITableViewCellSelectionStyleNone;
+            self.socialIDCell.selectionStyle = UITableViewCellSelectionStyleNone;
         }else{
-            socialIDCell.labelSocialID.text = @"Log in needed";
-            socialIDCell.selectionStyle = UITableViewCellSelectionStyleGray;
+            self.socialIDCell.labelSocialID.text = defaultSocialName;
+            self.socialIDCell.selectionStyle = UITableViewCellSelectionStyleGray;
         }
-        return socialIDCell;
+        return self.socialIDCell;
     }else{
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
         if (!cell) {
@@ -138,6 +141,8 @@ static NSString *const kSkateGameForAllDefaults = @"skateGameForAllDefaults";
     }
     if (indexPath.row == 3) {
         [self.loginViewController signOut];
+        self.socialIDCell.imgViewlSocialPic.image = self.defaultUserImage;
+        self.socialIDCell.labelSocialID.text = defaultSocialName;
         [self.tableView reloadData];
         [self performSegueWithIdentifier:@"goingToHomeSegue" sender:nil];
     }

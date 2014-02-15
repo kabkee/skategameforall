@@ -11,10 +11,12 @@
 //#import "AppDelegate.h"
 #import "SK8GameListDetailStatusCell.h"
 #import "SK8GameListDetailPlayerCell.h"
+#import "SK8GameVideoViewController.h"
 
 @interface SK8GameListDetailViewController ()
 @property NSArray * sectionTitleArray;
 @property UITableViewController * tableViewControllerForRefreshControl;
+@property BOOL didWentToVidos;
 
 @end
 
@@ -41,7 +43,6 @@
     self.tableViewGameDetail.dataSource = self;
     
     self.sectionTitleArray = @[@"Status", @"Participants", @"Watchers"];
-//    NSLog(@"roomDetails : %@", self.roomDetails);
     
     // UIRefreshControl
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init]; [refreshControl addTarget:self action:@selector(updateDataSource) forControlEvents:UIControlEventValueChanged];
@@ -50,6 +51,15 @@
     self.tableViewControllerForRefreshControl.tableView = self.tableViewGameDetail;
     self.tableViewControllerForRefreshControl.refreshControl = refreshControl;
     
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if ( [[self.roomDetails valueForKey:@"status"] isEqualToString:@"Playing"] ) {
+        if (!self.didWentToVidos) {
+            [self performSegueWithIdentifier:@"SK8GameVideo" sender:nil];
+        }
+    }
 }
 
 - (void)updateDataSource
@@ -159,5 +169,18 @@
 }
 
 
+#pragma mark - PrepareForSegue
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // passing room detail data to Sk8GameDetailViewController
+    if([segue.identifier isEqualToString:@"SK8GameVideo"]){
+//        UINavigationController *destViewController = (UINavigationController*)segue.destinationViewController;
+//        destViewController.title = @"Videos";
+        SK8GameVideoViewController * sk8VideoVc = (SK8GameVideoViewController *)[segue destinationViewController];
+        sk8VideoVc.roomDetails = self.roomDetails;
+        sk8VideoVc.title = @"Videos";
+        self.didWentToVidos = YES;
+    }
+}
 
 @end

@@ -18,8 +18,8 @@ static NSString *const GoogleClientSecret = @"ZdlMSq6ZWY1GgQDvFnJpnHwN";
 static NSString *const kGoogleUserData = @"GoogleUserData";
 
 @interface LoginViewController ()
-@property NSDictionary * userProfile;
-
+@property (strong, nonatomic) NSDictionary * userProfile;
+@property (strong, nonatomic)  NSUserDefaults * skategameForAllDefaults;
 
 @end
 
@@ -37,6 +37,7 @@ static NSString *const kGoogleUserData = @"GoogleUserData";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 	// Do any additional setup after loading the view.
     [self.navigationController setNavigationBarHidden:YES];
     
@@ -71,7 +72,6 @@ static NSString *const kGoogleUserData = @"GoogleUserData";
     viewController.signIn.additionalAuthorizationParameters = params;
     viewController.signIn.shouldFetchGoogleUserProfile = YES;
 
-    
     // Optional: display some html briefly before the sign-in page loads
     NSString *html = @"<html><body bgcolor=silver><div align=center>Loading sign-in page...</div></body></html>";
     viewController.initialHTMLString = html;
@@ -91,12 +91,14 @@ static NSString *const kGoogleUserData = @"GoogleUserData";
     
     // Discard our retained authentication object.
     self.auth = nil;
+    
+    self.skategameForAllDefaults = [NSUserDefaults standardUserDefaults];
+    [self.skategameForAllDefaults removeObjectForKey:kGoogleUserData];
 }
 
 - (void)viewController:(GTMOAuth2ViewControllerTouch *)viewController
       finishedWithAuth:(GTMOAuth2Authentication *)auth
                  error:(NSError *)error {
-
     
     if (error != nil) {
         // Authentication failed (perhaps the user denied access, or closed the
@@ -108,18 +110,17 @@ static NSString *const kGoogleUserData = @"GoogleUserData";
             NSString *str = [[NSString alloc] initWithData:responseData
                                                    encoding:NSUTF8StringEncoding];
             NSLog(@"%@", str);
-
         }
-        self.auth = nil;
+        [self signOut];
     } else {
         // save the authentication object
         self.auth = auth;
         NSLog(@"%@", @"login Success");
 
-        NSUserDefaults * skategameForAllDefaults = [NSUserDefaults standardUserDefaults];
-        NSDictionary *profile = viewController.signIn.userProfile;
-        self.userProfile = profile;
-        [skategameForAllDefaults setObject:self.userProfile forKey:kGoogleUserData];
+        NSDictionary *userProfile = viewController.signIn.userProfile;
+        self.userProfile = userProfile;
+        self.skategameForAllDefaults = [NSUserDefaults standardUserDefaults];
+        [self.skategameForAllDefaults setObject:userProfile forKey:kGoogleUserData];
 
 //        NSLog(@"before checking auth.parameters : %@", self.userProfile);
         [self checkIfCanAuthWithUserDefaults];
@@ -127,6 +128,8 @@ static NSString *const kGoogleUserData = @"GoogleUserData";
         [[self navigationController] setNavigationBarHidden:NO];
         [[self navigationController] popViewControllerAnimated:YES];
         [self.actvtIndicator stopAnimating];
+        
+//        NSLog(@"LoginView userProfile : %@", self.userProfile);
     }
 }
 
@@ -134,18 +137,22 @@ static NSString *const kGoogleUserData = @"GoogleUserData";
 #pragma mark - checkIfCanAuthWithUserDefaults
 - (void)checkIfCanAuthWithUserDefaults
 {
-    NSUserDefaults * skategameForAllDefaults = [NSUserDefaults standardUserDefaults];
-    [skategameForAllDefaults setObject:GoogleClientID forKey: kGoogleClientIDKey];
-    [skategameForAllDefaults setObject:GoogleClientSecret forKey: kGoogleClientSecretKey];
+    self.skategameForAllDefaults = [NSUserDefaults standardUserDefaults];
+    [self.skategameForAllDefaults setObject:GoogleClientID forKey: kGoogleClientIDKey];
+    [self.skategameForAllDefaults setObject:GoogleClientSecret forKey: kGoogleClientSecretKey];
     
-    GTMOAuth2Authentication * auth = nil;
-    auth = [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeyChainItemName clientID:kGoogleClientIDKey clientSecret:kGoogleClientSecretKey];
-    if (auth.canAuthorize) {
-        self.canAutholize = YES;
-    }else{
+    GTMOAuth2Authentication * auth = [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kKeyChainItemName clientID:kGoogleClientIDKey clientSecret:kGoogleClientSecretKey];
+
+    NSDictionary * userProfile = [self.skategameForAllDefaults objectForKey:kGoogleUserData];
+//    NSLog(@"LoginView checkif : %@", userProfile);
+
+    if (!userProfile || !auth.canAuthorize) {
+        [self.skategameForAllDefaults removeObjectForKey:kGoogleUserData];
         self.canAutholize = NO;
-        [skategameForAllDefaults removeObjectForKey:kGoogleUserData];
+    }else{
+        self.canAutholize = YES;
     }
+//    NSLog(@"LoginView checkif after : %@", userProfile);
 }
 
 @end

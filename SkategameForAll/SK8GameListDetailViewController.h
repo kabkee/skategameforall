@@ -11,7 +11,6 @@
 @interface SK8GameListDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableViewGameDetail;
-@property UICollectionView * collectionViewForVideo;
 @property NSDictionary * roomDetails;
 
 @end

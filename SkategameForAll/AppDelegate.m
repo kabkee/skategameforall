@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 
 @implementation AppDelegate
-@synthesize gameRoomList;
+@synthesize RawDataForGameListFromServer;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -18,8 +18,8 @@
     // if Online Mode = YES, if NOT = NO;
     self.onlineOn = NO;
     
-    if(!gameRoomList){
-        gameRoomList = [[NSMutableDictionary alloc]init];
+    if(!RawDataForGameListFromServer){
+        RawDataForGameListFromServer = [[NSMutableDictionary alloc]init];
         NSDictionary *jsonInfo = @{@"room1":
                                        @{
                                            //roomDetail
@@ -122,6 +122,108 @@
                                                    ],
                                            @"scores":@{@"kabkee": @4,
                                                        @"Gomsun2": @4} // S(1), K(2), A(3), T(4), E(5)= over
+                                           },
+                                   @"room4":
+                                       @{
+                                           //roomDetail
+                                           @"createDate": @"2014-01-31", //dateTime
+                                           @"status": @"Ended", // [Ready, Playing, Paused, Ended]
+                                           @"title": @"NoOne's room2", //string
+                                           @"gameStartTime": @"2014-02-21", //dateTime
+                                           @"maxPpl":@5, // max 5 ppl
+                                           @"players":@[@"kabkee",@"Gomsun2"], //array // attOrder
+                                           @"watchers":@[@"DanbeeWC2", @"HyojuWC2"], // array
+                                           @"clikingNo":@100, // int
+                                           @"starred":@[@"SuminST2", @"DanbeeST2", @"HyojuST2"], // array
+                                           @"attLimitDay":@7, // int Days
+                                           @"defLimitDay":@7, // int Days
+                                           @"orderAttAutomate":@NO, //boolean
+                                           //gameDetail
+                                           @"statusOfAtt":@YES, //booean Att=YES, Def=NO
+                                           @"attacker":@"kabkee",
+                                           @"defender":@[@"Gomsun2"], // who uploaded def video
+                                           @"videos":@[
+                                                   @{@"statusOfAtt": @YES,
+                                                     @"videoAdd":@"http://urlAtt.com",
+                                                     @"regTime":@"2014-01-14",
+                                                     @"title":@"kickflip",
+                                                     @"player":@"kabkee"},
+                                                   @{@"statusOfAtt": @NO,
+                                                     @"videoAdd":@"http://urlDef.com",
+                                                     @"regTime":@"2014-01-15",
+                                                     @"title":@"kickflip",
+                                                     @"player":@"Gomsun2"}
+                                                   ],
+                                           @"scores":@{@"kabkee": @4,
+                                                       @"Gomsun2": @4} // S(1), K(2), A(3), T(4), E(5)= over
+                                           },
+                                   @"room5":
+                                       @{
+                                           //roomDetail
+                                           @"createDate": @"2014-01-31", //dateTime
+                                           @"status": @"Ready", // [Ready, Playing, Paused, Ended]
+                                           @"title": @"NoOne's room2", //string
+                                           @"gameStartTime": @"2014-02-21", //dateTime
+                                           @"maxPpl":@5, // max 5 ppl
+                                           @"players":@[@"kabkee",@"Gomsun2"], //array // attOrder
+                                           @"watchers":@[@"DanbeeWC2", @"HyojuWC2"], // array
+                                           @"clikingNo":@100, // int
+                                           @"starred":@[@"SuminST2", @"DanbeeST2", @"HyojuST2"], // array
+                                           @"attLimitDay":@7, // int Days
+                                           @"defLimitDay":@7, // int Days
+                                           @"orderAttAutomate":@NO, //boolean
+                                           //gameDetail
+                                           @"statusOfAtt":@YES, //booean Att=YES, Def=NO
+                                           @"attacker":@"kabkee",
+                                           @"defender":@[@"Gomsun2"], // who uploaded def video
+                                           @"videos":@[
+                                                   @{@"statusOfAtt": @YES,
+                                                     @"videoAdd":@"http://urlAtt.com",
+                                                     @"regTime":@"2014-01-14",
+                                                     @"title":@"kickflip",
+                                                     @"player":@"kabkee"},
+                                                   @{@"statusOfAtt": @NO,
+                                                     @"videoAdd":@"http://urlDef.com",
+                                                     @"regTime":@"2014-01-15",
+                                                     @"title":@"kickflip",
+                                                     @"player":@"Gomsun2"}
+                                                   ],
+                                           @"scores":@{@"kabkee": @4,
+                                                       @"Gomsun2": @4} // S(1), K(2), A(3), T(4), E(5)= over
+                                           },
+                                   @"room6":
+                                       @{
+                                           //roomDetail
+                                           @"createDate": @"2014-01-31", //dateTime
+                                           @"status": @"Playing", // [Ready, Playing, Paused, Ended]
+                                           @"title": @"NoOne's room2", //string
+                                           @"gameStartTime": @"2014-02-21", //dateTime
+                                           @"maxPpl":@5, // max 5 ppl
+                                           @"players":@[@"kabkee",@"Gomsun2"], //array // attOrder
+                                           @"watchers":@[@"DanbeeWC2", @"HyojuWC2"], // array
+                                           @"clikingNo":@100, // int
+                                           @"starred":@[@"SuminST2", @"DanbeeST2", @"HyojuST2"], // array
+                                           @"attLimitDay":@7, // int Days
+                                           @"defLimitDay":@7, // int Days
+                                           @"orderAttAutomate":@NO, //boolean
+                                           //gameDetail
+                                           @"statusOfAtt":@YES, //booean Att=YES, Def=NO
+                                           @"attacker":@"kabkee",
+                                           @"defender":@[@"Gomsun2"], // who uploaded def video
+                                           @"videos":@[
+                                                   @{@"statusOfAtt": @YES,
+                                                     @"videoAdd":@"http://urlAtt.com",
+                                                     @"regTime":@"2014-01-14",
+                                                     @"title":@"kickflip",
+                                                     @"player":@"kabkee"},
+                                                   @{@"statusOfAtt": @NO,
+                                                     @"videoAdd":@"http://urlDef.com",
+                                                     @"regTime":@"2014-01-15",
+                                                     @"title":@"kickflip",
+                                                     @"player":@"Gomsun2"}
+                                                   ],
+                                           @"scores":@{@"kabkee": @4,
+                                                       @"Gomsun2": @4} // S(1), K(2), A(3), T(4), E(5)= over
                                            }
                                    };
         
@@ -134,7 +236,7 @@
             jsonData = [NSData dataWithContentsOfURL:url];
             if (!jsonData) {
                 // Just for insurance
-                [gameRoomList setObject:@"" forKey:@""];
+                [RawDataForGameListFromServer setObject:@"" forKey:@""];
                 return YES;
             }
         }else{
@@ -146,7 +248,7 @@
                 // Nothing to do
             }
         }
-        [gameRoomList setDictionary:[NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error]];
+        [RawDataForGameListFromServer setDictionary:[NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error]];
 //        gameRoomList= [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
         
     }
@@ -155,16 +257,16 @@
 
 - (void)addData:(NSDictionary *)data
 {
-    [gameRoomList setObject:data[@"value"] forKey:data[@"key"]];
+    [RawDataForGameListFromServer setObject:data[@"value"] forKey:data[@"key"]];
 }
 
 - (void)updateData:(NSDictionary *)data
 {
-    [gameRoomList setValue:data[@"value"] forKey:data[@"key"]];
+    [RawDataForGameListFromServer setValue:data[@"value"] forKey:data[@"key"]];
 }
 - (void)removeData:(NSString *)key
 {
-    [gameRoomList removeObjectForKey:key];
+    [RawDataForGameListFromServer removeObjectForKey:key];
 }
 
 

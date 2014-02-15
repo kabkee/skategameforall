@@ -16,9 +16,14 @@
 @interface SK8GameListViewController ()
 @property UIImage * Image_BlockMenuBarButton;
 @property UIButton * Btn_ForCustomBarButtonItem;
-@property NSDictionary * DicGameList;
+@property UIButton * previousButton;
+
+@property NSDictionary * RawDataForGameListFromServer;
 @property NSDictionary * RoomDetails;
-@property NSString *RoomDetailTitle; // roomTitle for roomDetailTableView
+@property NSDictionary * DataSourceForGameListTable;
+@property NSArray * SearchedDataForGameList;
+
+
 @property UITableViewController * tableViewControllerForRefreshControl;
 
 @end
@@ -61,7 +66,21 @@
     
     //data source
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    self.DicGameList = appDelegate.gameRoomList;
+    self.RawDataForGameListFromServer = appDelegate.RawDataForGameListFromServer;
+    self.DataSourceForGameListTable = self.RawDataForGameListFromServer;
+    
+    // Set previousButton : BtnGames
+    self.previousButton = self.BtnGames;
+    
+    NSArray * fullData = [NSArray arrayWithObject:self.RawDataForGameListFromServer];
+    NSPredicate * dicPredictate = [NSPredicate predicateWithFormat:@"SELF.players contains[cb] %@", @"ka"];
+//    NSArray * keys = [self.RawDataForGameListFromServer allKeys];
+//    NSArray *filteredKeys = [keys filteredArrayUsingPredicate:dicPredictate];
+//    NSLog(@"filteredKeys : %@", filteredKeys);
+    
+    NSArray * newDic = [fullData filteredArrayUsingPredicate:dicPredictate];
+    NSLog(@"fullData : %@", fullData);
+    NSLog(@"newDic : %@", newDic);
     
     self.TableViewGamelist.dataSource = self;
     self.TableViewGamelist.delegate = self;
@@ -87,6 +106,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)changeGameList:(id)sender {
+    UIButton * button = (UIButton *) sender;
+    button.titleLabel.textColor = [UIColor redColor];
+    [button.titleLabel setFont:[UIFont systemFontOfSize:25]];
+
+    self.previousButton.titleLabel.textColor = [UIColor colorWithRed:.196 green:0.3098 blue:0.52 alpha:1.0];;
+    [self.previousButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
+    self.previousButton = button;
+}
+
 - (void)didDismissedModalView
 {
     [self updateDataSource];
@@ -106,7 +135,7 @@
 
 - (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.DicGameList.count;
+    return self.DataSourceForGameListTable.count;
 }
 
 #pragma mark - TableView Delegate
@@ -118,12 +147,12 @@
         cell = [[SK8GameListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier: cellIdentifier];
     }
     
-    NSMutableArray *keys = [[NSMutableArray alloc] initWithArray:[self.DicGameList allKeys]];
+    NSMutableArray *keys = [[NSMutableArray alloc] initWithArray:[self.DataSourceForGameListTable allKeys]];
     NSInteger row = [indexPath row];
     
     if (![keys[row] isEqualToString:@""]) {
-        if( [self.DicGameList valueForKey:keys[row]]){
-            NSDictionary * dic = [self.DicGameList valueForKey:keys[row]];
+        if( [self.DataSourceForGameListTable valueForKey:keys[row]]){
+            NSDictionary * dic = [self.DataSourceForGameListTable valueForKey:keys[row]];
             
             //createDate, status, title, gameStartTime
             cell.roomCreateDate.text = [dic valueForKey:@"createDate"];
@@ -156,9 +185,9 @@
         destViewController.title = cell.roomTitle.text;
         SK8GameListDetailViewController * sk8vc = [segue destinationViewController];
         NSIndexPath * idxPath = [self.TableViewGamelist indexPathForCell:sender];
-        NSMutableArray *keys = [[NSMutableArray alloc] initWithArray:[self.DicGameList allKeys]];
+        NSMutableArray *keys = [[NSMutableArray alloc] initWithArray:[self.DataSourceForGameListTable allKeys]];
         NSInteger row = [idxPath row];
-        self.RoomDetails = [self.DicGameList valueForKey:keys[row]];
+        self.RoomDetails = [self.DataSourceForGameListTable valueForKey:keys[row]];
         sk8vc.roomDetails = self.RoomDetails;
     }else if ([segue.identifier isEqualToString:@"SK8GameNewModal"]){
         SK8GameNewTableViewController * sk8ntvc = (SK8GameNewTableViewController *)[segue.destinationViewController topViewController];

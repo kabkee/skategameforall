@@ -16,6 +16,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *BtnSearch;
 @property (strong, nonatomic) IBOutlet UITableView *TableViewGamelist;
 
+- (IBAction)changeGameList:(id)sender;
+
 - (void)didDismissedModalView;
 
 

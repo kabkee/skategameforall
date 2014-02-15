@@ -1,14 +1,14 @@
 //
-//  SideBarSocialIDCell.m
+//  SK8GameVideoListItemCell.m
 //  SkategameForAll
 //
-//  Created by Kabkee Moon on 2014. 2. 8..
+//  Created by Kabkee Moon on 2014. 2. 15..
 //  Copyright (c) 2014년 Kabkee Moon. All rights reserved.
 //
 
-#import "SideBarSocialIDCell.h"
+#import "SK8GameVideoListItemCell.h"
 
-@implementation SideBarSocialIDCell
+@implementation SK8GameVideoListItemCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -25,4 +25,5 @@
 
     // Configure the view for the selected state
 }
+
 @end

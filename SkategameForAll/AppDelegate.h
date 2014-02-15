@@ -11,7 +11,7 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property NSMutableDictionary * gameRoomList;
+@property NSMutableDictionary * RawDataForGameListFromServer;
 
 // Only for Test, For production please delete all the below;
 @property BOOL onlineOn;

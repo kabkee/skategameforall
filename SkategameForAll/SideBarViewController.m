@@ -11,6 +11,7 @@
 #import "GTMOAuth2Authentication.h"
 #import "LoginViewController.h"
 #import "SideBarSocialIDCell.h"
+#import "SideBarSocialPictureViewController.h"
 
 static NSString *const kGoogleUserData = @"GoogleUserData";
 static NSString *const kSkateGameForAllDefaults = @"skateGameForAllDefaults";
@@ -18,7 +19,7 @@ static NSString *const defaultSocialName = @"Log in needed";
 
 @interface SideBarViewController ()
 @property NSDictionary * userData;
-@property NSUserDefaults * skateGameForAllDefaults;
+@property NSUserDefaults * skategameForAllDefaults;
 @property LoginViewController * loginViewController;
 @property SideBarSocialIDCell * socialIDCell;
 @property UIImage * defaultUserImage;
@@ -43,7 +44,8 @@ static NSString *const defaultSocialName = @"Log in needed";
 
     self.defaultUserImage = [UIImage imageNamed:@"glyphicons_004_girl.png"];
     self.loginViewController = [[LoginViewController alloc]init];
-    
+
+    self.skategameForAllDefaults = [NSUserDefaults standardUserDefaults];
     NSNotificationCenter * nfCenter = [NSNotificationCenter defaultCenter];
     [nfCenter addObserver:self selector:@selector(defaultValueChanged:) name:NSUserDefaultsDidChangeNotification object:nil];
     
@@ -54,6 +56,7 @@ static NSString *const defaultSocialName = @"Log in needed";
 {
     NSUserDefaults * defaults = (NSUserDefaults *)[notification object];
     self.userData = [defaults objectForKey: kGoogleUserData];
+//    NSLog(@"SideBarView defaults value changed : %@", self.userData);
     if (self.userData) {
         [self.tableView reloadData];
     }
@@ -108,6 +111,7 @@ static NSString *const defaultSocialName = @"Log in needed";
         if (!self.socialIDCell) {
             self.socialIDCell = [[SideBarSocialIDCell alloc] init];
         }
+
         if (self.userData) {
             self.socialIDCell.labelSocialID.text = [self.userData objectForKey:@"name"];
             
@@ -115,7 +119,7 @@ static NSString *const defaultSocialName = @"Log in needed";
                 NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[self.userData objectForKey:@"picture"]]];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     // Update the UI
-                    self.socialIDCell.imgViewlSocialPic.image = [UIImage imageWithData:imageData];
+                    [self.socialIDCell.imgViewlSocialPic setBackgroundImage:[UIImage imageWithData:imageData] forState:UIControlStateNormal];
                 });
             });
             self.socialIDCell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -141,7 +145,7 @@ static NSString *const defaultSocialName = @"Log in needed";
     }
     if (indexPath.row == 3) {
         [self.loginViewController signOut];
-        self.socialIDCell.imgViewlSocialPic.image = self.defaultUserImage;
+        [self.socialIDCell.imgViewlSocialPic setBackgroundImage:self.defaultUserImage forState:UIControlStateNormal];
         self.socialIDCell.labelSocialID.text = defaultSocialName;
         [self.tableView reloadData];
         [self performSegueWithIdentifier:@"goingToHomeSegue" sender:nil];
@@ -151,10 +155,6 @@ static NSString *const defaultSocialName = @"Log in needed";
 #pragma mark - PrepareForSegue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    
-    // Set the title of navigation bar by using the menu items
     UINavigationController *destViewController = (UINavigationController*)segue.destinationViewController;
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
 
@@ -183,7 +183,12 @@ static NSString *const defaultSocialName = @"Log in needed";
             [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated: YES];
         };
     }
-    
+    if ([[segue identifier] isEqualToString:@"showSocialPicture"]) {
+        SideBarSocialPictureViewController * destSocialPictureViewController = (SideBarSocialPictureViewController *) [segue destinationViewController];
+        UIImage * currentBackgroundImage = self.socialIDCell.imgViewlSocialPic.currentBackgroundImage;
+        destSocialPictureViewController.socialPicture = currentBackgroundImage;
+        destSocialPictureViewController.imgViewForSocialPicture.backgroundColor = [UIColor clearColor];
+    }
 }
 
 

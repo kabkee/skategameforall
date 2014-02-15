@@ -11,5 +11,6 @@
 @interface SideBarSocialIDCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UILabel *labelSocialID;
-@property (strong, nonatomic) IBOutlet UIImageView *imgViewlSocialPic;
+@property (strong, nonatomic) IBOutlet UIButton *imgViewlSocialPic;
+
 @end
